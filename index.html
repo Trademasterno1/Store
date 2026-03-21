@@ -64,7 +64,6 @@ nav{position:sticky;top:0;z-index:100;background:rgba(11,14,17,0.95);backdrop-fi
 .feat-card h4{font-weight:700;font-size:15px;margin-bottom:8px}
 .feat-card p{color:var(–muted);font-size:13px;line-height:1.6}
 
-/* MODAL */
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:1000;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(8px)}
 .overlay.on{display:flex}
 .modal{background:var(–panel);border:1px solid var(–border);border-radius:16px;padding:32px;max-width:500px;width:100%;animation:up 0.3s ease;max-height:92vh;overflow-y:auto}
@@ -74,21 +73,18 @@ nav{position:sticky;top:0;z-index:100;background:rgba(11,14,17,0.95);backdrop-fi
 .m-close{width:34px;height:34px;background:rgba(255,255,255,0.06);border:none;border-radius:7px;color:var(–muted);font-size:17px;cursor:pointer}
 .m-close:hover{background:rgba(255,255,255,0.12);color:white}
 .prod-bar{background:rgba(240,185,11,0.06);border:1px solid var(–border);border-radius:9px;padding:14px 18px;margin-bottom:22px;display:flex;justify-content:space-between;align-items:center}
-.prod-bar .pprice{font-family:‘Bebas Neue’,sans-serif;font-size:28px;color:var(–gold)}
+.pprice{font-family:‘Bebas Neue’,sans-serif;font-size:28px;color:var(–gold)}
 
 .step{display:none}.step.on{display:block}
-
 .field{margin-bottom:14px}
 .field label{display:block;font-size:11px;font-weight:700;color:var(–muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:7px;font-family:‘JetBrains Mono’,monospace}
 .field input{width:100%;background:rgba(255,255,255,0.05);border:1px solid var(–border);border-radius:8px;padding:12px 14px;color:var(–text);font-family:‘DM Sans’,sans-serif;font-size:14px;outline:none;transition:border-color 0.2s}
 .field input:focus{border-color:var(–gold)}
 .field input::placeholder{color:var(–muted)}
 
-/* Payment box - NOWPayments */
 .pay-box{background:rgba(255,255,255,0.03);border:1px solid var(–border);border-radius:10px;padding:20px;margin-bottom:16px;text-align:center}
-.pay-box .coin-icon{font-size:36px;margin-bottom:10px}
-.pay-box .pay-amount{font-family:‘Bebas Neue’,sans-serif;font-size:38px;color:var(–gold);line-height:1;margin-bottom:4px}
-.pay-box .pay-curr{font-size:12px;color:var(–muted);margin-bottom:16px;font-family:‘JetBrains Mono’,monospace}
+.pay-amount{font-family:‘Bebas Neue’,sans-serif;font-size:38px;color:var(–gold);line-height:1;margin-bottom:4px}
+.pay-curr{font-size:12px;color:var(–muted);margin-bottom:16px;font-family:‘JetBrains Mono’,monospace}
 .addr-box{background:rgba(255,255,255,0.04);border:1px solid var(–border);border-radius:9px;padding:14px;margin-bottom:12px}
 .net-badge{display:inline-block;font-size:10px;font-weight:700;color:white;background:#26A17B;padding:3px 9px;border-radius:4px;margin-bottom:10px;font-family:‘JetBrains Mono’,monospace}
 .addr-row{display:flex;align-items:center;gap:8px}
@@ -96,45 +92,35 @@ nav{position:sticky;top:0;z-index:100;background:rgba(11,14,17,0.95);backdrop-fi
 .qr-c{text-align:center;margin:12px 0 4px}
 .qr-c img{background:white;padding:8px;border-radius:8px;width:120px;height:120px}
 
-/* Timer */
 .timer-wrap{background:rgba(240,185,11,0.06);border:1px solid var(–border);border-radius:8px;padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between}
 .timer-label{font-size:12px;color:var(–muted);font-family:‘JetBrains Mono’,monospace}
 .timer-val{font-family:‘Bebas Neue’,sans-serif;font-size:24px;color:var(–gold)}
 
-/* Status bar */
 .status-bar{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:8px;margin-bottom:14px;font-size:13px;font-weight:600}
-.status-waiting{background:rgba(240,185,11,0.08);border:1px solid rgba(240,185,11,0.25);color:var(–gold)}
-.status-detecting{background:rgba(52,152,219,0.08);border:1px solid rgba(52,152,219,0.25);color:#4FC3F7}
-.status-confirming{background:rgba(230,126,34,0.08);border:1px solid rgba(230,126,34,0.25);color:#E67E22}
-.status-confirmed{background:rgba(46,204,113,0.08);border:1px solid rgba(46,204,113,0.25);color:#2ECC71}
+.sw{background:rgba(240,185,11,0.08);border:1px solid rgba(240,185,11,0.25);color:var(–gold)}
+.sc{background:rgba(230,126,34,0.08);border:1px solid rgba(230,126,34,0.25);color:#E67E22}
+.ss{background:rgba(46,204,113,0.08);border:1px solid rgba(46,204,113,0.25);color:#2ECC71}
 .pulse{width:8px;height:8px;border-radius:50%;flex-shrink:0;animation:pulse 1.5s ease infinite}
-.pulse-gold{background:var(–gold)}
-.pulse-blue{background:#4FC3F7}
-.pulse-orange{background:#E67E22}
-.pulse-green{background:#2ECC71}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
 
 .btn-copy{background:var(–gold);color:#0B0E11;border:none;padding:8px 12px;border-radius:6px;font-weight:700;font-size:11px;cursor:pointer;white-space:nowrap;transition:all 0.2s;font-family:‘DM Sans’,sans-serif;flex-shrink:0}
-.btn-copy:hover{background:#FFD02A}
 .btn-copy.ok{background:#2ECC71;color:white}
 .btn-main{width:100%;background:var(–gold);color:#0B0E11;font-family:‘DM Sans’,sans-serif;font-weight:700;font-size:14px;padding:13px;border:none;border-radius:8px;cursor:pointer;transition:all 0.2s;margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:8px}
 .btn-main:hover{background:#FFD02A}
-.btn-ghost{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(–border);color:var(–muted);font-family:‘DM Sans’,sans-serif;font-weight:600;font-size:13px;padding:11px;border-radius:8px;cursor:pointer;transition:all 0.2s}
+.btn-ghost{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(–border);color:var(–muted);font-family:‘DM Sans’,sans-serif;font-weight:600;font-size:13px;padding:11px;border-radius:8px;cursor:pointer}
 .btn-ghost:hover{border-color:rgba(255,255,255,0.2);color:var(–text)}
 
-/* Spinner */
 .spin-panel{text-align:center;padding:30px 0}
 .spinner{width:48px;height:48px;border:3px solid rgba(240,185,11,0.15);border-top-color:var(–gold);border-radius:50%;animation:spin 0.9s linear infinite;margin:0 auto 16px}
 @keyframes spin{to{transform:rotate(360deg)}}
 .spin-panel h3{font-family:‘Bebas Neue’,sans-serif;font-size:24px;margin-bottom:8px}
 .spin-panel p{color:var(–muted);font-size:13px;line-height:1.6}
 
-/* Success */
 .done-panel{text-align:center;padding:10px 0}
 .done-icon{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 18px;background:rgba(46,204,113,0.12);border:2px solid #2ECC71}
 .done-panel h3{font-family:‘Bebas Neue’,sans-serif;font-size:30px;color:#2ECC71;margin-bottom:10px}
 .done-panel p{color:var(–muted);font-size:13px;line-height:1.65;margin-bottom:10px}
-.btn-dl{width:100%;background:#2ECC71;color:#0B0E11;font-family:‘DM Sans’,sans-serif;font-weight:700;font-size:15px;padding:14px;border:none;border-radius:8px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-dl{width:100%;background:#2ECC71;color:#0B0E11;font-family:‘DM Sans’,sans-serif;font-weight:700;font-size:15px;padding:14px;border:none;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px}
 .btn-dl:hover{background:#27AE60}
 
 footer{position:relative;z-index:1;border-top:1px solid var(–border);padding:36px 24px;text-align:center}
@@ -211,7 +197,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(–border);padding:3
   </div>
 </section>
 
-<!-- PAYMENT MODAL -->
+<!-- MODAL -->
 
 <div class="overlay" id="overlay">
   <div class="modal">
@@ -234,7 +220,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(–border);padding:3
 <!-- S1: Email -->
 <div class="step on" id="s1">
   <div style="background:rgba(240,185,11,0.06);border:1px solid var(--border);border-radius:8px;padding:13px;margin-bottom:18px;font-size:13px;color:var(--muted);line-height:1.6">
-    ⚡ Pay with USDT — payment verified automatically on the blockchain. Download starts instantly after confirmation.
+    ⚡ Pay with crypto — verified automatically on blockchain. Download starts instantly after confirmation.
   </div>
   <div class="field">
     <label>Your Email Address *</label>
@@ -250,7 +236,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(–border);padding:3
   <button class="btn-ghost" onclick="closeModal()">Cancel</button>
 </div>
 
-<!-- S2: Creating payment -->
+<!-- S2: Creating -->
 <div class="step" id="s2">
   <div class="spin-panel">
     <div class="spinner"></div>
@@ -259,53 +245,46 @@ footer{position:relative;z-index:1;border-top:1px solid var(–border);padding:3
   </div>
 </div>
 
-<!-- S3: Waiting for payment -->
+<!-- S3: Waiting -->
 <div class="step" id="s3">
-  <div class="status-bar status-waiting" id="statusBar">
-    <span class="pulse pulse-gold" id="statusDot"></span>
-    <span id="statusText">Waiting for payment…</span>
+  <div class="status-bar sw" id="statusBar">
+    <span class="pulse" id="statusDot" style="background:var(--gold)"></span>
+    <span id="statusTxt">Waiting for your payment…</span>
   </div>
-
   <div class="pay-box">
-    <div class="coin-icon">💲</div>
-    <div class="pay-amount" id="payAmount"></div>
-    <div class="pay-curr">USDT · TRC20</div>
-
+    <div style="font-size:28px;margin-bottom:8px">💲</div>
+    <div class="pay-amount" id="payAmt"></div>
+    <div class="pay-curr" id="payCurr">USDT · TRC20</div>
     <div class="addr-box">
-      <div class="net-badge">TRC20 Network Only</div>
+      <div class="net-badge" id="payNet">TRC20</div>
       <div style="font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:1px;margin-bottom:8px">SEND TO THIS ADDRESS</div>
       <div class="addr-row">
-        <div class="addr-txt" id="payAddress"></div>
-        <button class="btn-copy" id="cAddr" onclick="cpAddr()">Copy</button>
+        <div class="addr-txt" id="payAddr"></div>
+        <button class="btn-copy" id="cBtn" onclick="cpAddr()">Copy</button>
       </div>
-      <div class="qr-c">
-        <img id="payQR" src="" alt="QR Code">
-      </div>
+      <div class="qr-c"><img id="payQR" src="" alt="QR"></div>
     </div>
   </div>
-
   <div class="timer-wrap">
     <span class="timer-label">⏱ Payment window</span>
     <span class="timer-val" id="timerVal">20:00</span>
   </div>
-
   <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:7px;padding:12px 14px;font-size:12px;color:var(--muted);line-height:1.6">
-    ⚠️ Send <b style="color:var(--text)">exact amount</b> via <b style="color:var(--gold)">TRC20 only</b>.<br>
-    Page updates automatically — do not close this window.
+    ⚠️ Send <b style="color:var(--text)">exact amount</b>. Page updates automatically — do not close.
   </div>
 </div>
 
-<!-- S4: Confirmed — Download -->
+<!-- S4: Confirmed -->
 <div class="step" id="s4">
   <div class="done-panel">
     <div class="done-icon">✓</div>
     <h3>Payment Confirmed!</h3>
-    <p>Blockchain verified your transaction.<br>Your download is ready.</p>
-    <button class="btn-dl" id="dlBtn" onclick="doDownload()">
+    <p>Blockchain verified your transaction.<br>Your download is ready now.</p>
+    <button class="btn-dl" onclick="doDownload()">
       <i class="fa fa-download"></i> Download Bot Now
     </button>
-    <div style="margin-top:16px;font-size:12px;color:var(--muted)">
-      A copy will also be sent to <span id="dEmail" style="color:#4FC3F7;font-family:'JetBrains Mono',monospace"></span>
+    <div style="margin-top:10px;font-size:12px;color:var(--muted)">
+      Receipt sent to <span id="dEmail" style="color:#4FC3F7;font-family:'JetBrains Mono',monospace"></span>
     </div>
   </div>
 </div>
@@ -315,8 +294,8 @@ footer{position:relative;z-index:1;border-top:1px solid var(–border);padding:3
   <div style="text-align:center;padding:20px 0">
     <div style="font-size:48px;margin-bottom:16px">⌛</div>
     <h3 style="font-family:'Bebas Neue',sans-serif;font-size:26px;color:#E74C3C;margin-bottom:10px">Payment Expired</h3>
-    <p style="color:var(--muted);font-size:13px;margin-bottom:20px">The payment window has closed. Please try again.</p>
-    <button class="btn-main" onclick="retryPayment()">Try Again</button>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:20px">The payment window closed. Please try again.</p>
+    <button class="btn-main" onclick="showStep('s1')">Try Again</button>
   </div>
 </div>
 ```
@@ -331,16 +310,12 @@ footer{position:relative;z-index:1;border-top:1px solid var(–border);padding:3
 </footer>
 
 <script>
-// ══════════════════════════════════════════════════
-//  CONFIG
-// ══════════════════════════════════════════════════
-var NP_KEY    = '0W3AZTD-AASMFJW-J0MKP0A-7QJ3V70';  // NOWPayments API Key
-var TG_TOKEN  = '8673048238:AAE7mw5_2z-o6SFcQuHqkjHUSlZ2JNzkZ08';
-var TG_CHAT   = '1150672935';
+// ── CONFIG ──────────────────────────────────────────
+var SERVER   = 'https://store-his6.onrender.com'; // Render server
+var TG_TOKEN = '8673048238:AAE7mw5_2z-o6SFcQuHqkjHUSlZ2JNzkZ08';
+var TG_CHAT  = '1150672935';
 
-// ══════════════════════════════════════════════════
-//  BOTS (hardcoded)
-// ══════════════════════════════════════════════════
+// ── BOTS ────────────────────────────────────────────
 var BOTS = [
   {
     id: 1,
@@ -348,7 +323,7 @@ var BOTS = [
     price: 79,
     desc: 'Advanced gold (XAUUSD) scalper built on Smart Money Concepts. Detects institutional order blocks, FVG zones, and liquidity sweeps on M5/M15. Dual strategy: SMC + Bollinger Bands breakout.',
     feats: ['SMC Order Block & FVG detection','ATR-based dynamic SL/TP','4-phase trailing stop','Session & spread filter','Daily loss kill switch','Live dashboard on chart'],
-    file: { name: 'GoldScalper_AI_SMC.mq5', url: null }
+    file: null
   },
   {
     id: 2,
@@ -356,13 +331,11 @@ var BOTS = [
     price: 49,
     desc: 'High-frequency M5 gold scalper using EMA crossover + RSI confirmation. 4-phase trailing stop: break-even → normal trail → tight trail → profit lock. Broker-agnostic tick calculations.',
     feats: ['EMA crossover + RSI confirmation','Closed-bar data — no repainting','Broker-agnostic tick calculation','4-phase trailing stop (BE → Lock)','Retry loop on order errors','News blackout system'],
-    file: { name: 'Gold_Scalping_Sniper_v4.2.mq5', url: null }
+    file: null
   }
 ];
 
-// ══════════════════════════════════════════════════
-//  RENDER BOTS
-// ══════════════════════════════════════════════════
+// ── RENDER BOTS ─────────────────────────────────────
 (function() {
   var g = document.getElementById('botsGrid');
   var h = '';
@@ -383,15 +356,13 @@ var BOTS = [
   g.innerHTML = h;
 })();
 
-// ══════════════════════════════════════════════════
-//  STATE
-// ══════════════════════════════════════════════════
-var curBot     = null;
-var paymentId  = null;
-var pollTimer  = null;
-var countdown  = null;
-var curEmail   = '';
-var curName    = '';
+// ── STATE ────────────────────────────────────────────
+var curBot    = null;
+var paymentId = null;
+var pollTimer = null;
+var cntTimer  = null;
+var curEmail  = '';
+var curName   = '';
 
 function openModal(botId) {
   for (var i = 0; i < BOTS.length; i++) {
@@ -407,19 +378,18 @@ function openModal(botId) {
 }
 
 function closeModal() {
-  stopPolling();
+  stopAll();
   document.getElementById('overlay').classList.remove('on');
 }
 
 function showStep(id) {
-  var steps = ['s1','s2','s3','s4','s5'];
-  for (var i = 0; i < steps.length; i++) document.getElementById(steps[i]).classList.remove('on');
+  ['s1','s2','s3','s4','s5'].forEach(function(s) {
+    document.getElementById(s).classList.remove('on');
+  });
   document.getElementById(id).classList.add('on');
 }
 
-// ══════════════════════════════════════════════════
-//  CREATE PAYMENT — NOWPayments API
-// ══════════════════════════════════════════════════
+// ── CREATE PAYMENT via Render Server ─────────────────
 function createPayment() {
   curEmail = document.getElementById('inEmail').value.trim();
   curName  = document.getElementById('inName').value.trim() || 'Customer';
@@ -430,206 +400,110 @@ function createPayment() {
 
   showStep('s2');
 
-  var body = {
-    price_amount:    curBot.price,
-    price_currency:  'usd',
-    pay_currency:    'usdttrc20',
-    order_id:        'TM1-' + curBot.id + '-' + Date.now(),
-    order_description: curBot.name + ' — Trade Master No.1',
-    case: 'success'
-  };
-
-  fetch('https://api.nowpayments.io/v1/payment', {
+  fetch(SERVER + '/create-payment', {
     method: 'POST',
-    headers: {
-      'x-api-key': NP_KEY,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(body)
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      price_amount:      curBot.price,
+      price_currency:    'usd',
+      pay_currency:      'usdttrc20',
+      order_id:          'TM1-' + curBot.id + '-' + Date.now(),
+      order_description: curBot.name + ' — Trade Master No.1'
+    })
   })
   .then(function(r) { return r.json(); })
   .then(function(data) {
     if (data.payment_id) {
       paymentId = data.payment_id;
-      showPaymentScreen(data);
+      document.getElementById('payAmt').textContent  = data.pay_amount + ' USDT';
+      document.getElementById('payAddr').textContent = data.pay_address;
+      document.getElementById('payQR').src = 'https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=' + data.pay_address;
+      document.getElementById('dEmail').textContent  = curEmail;
+      showStep('s3');
       startPolling(data.payment_id);
-      startTimer(20 * 60); // 20 minutes
-      notifyTelegram('🆕 Payment Created', data, curBot, curEmail, curName);
+      startTimer(20 * 60);
+      tgNotify('🆕 New Order\n\n🤖 ' + curBot.name + '\n💰 $' + curBot.price + '\n👤 ' + curName + '\n📧 ' + curEmail);
     } else {
-      alert('Error creating payment: ' + (data.message || 'Unknown error'));
+      alert('Error: ' + (data.message || 'Could not create payment. Please try again.'));
       showStep('s1');
     }
   })
   .catch(function(err) {
-    alert('Network error. Please check your connection and try again.');
-    console.error(err);
+    alert('Connection error. Please try again.\n' + err.message);
     showStep('s1');
   });
 }
 
-function showPaymentScreen(data) {
-  var addr   = data.pay_address;
-  var amount = data.pay_amount;
-
-  document.getElementById('payAmount').textContent  = amount + ' USDT';
-  document.getElementById('payAddress').textContent = addr;
-  document.getElementById('payQR').src = 'https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=' + addr;
-  document.getElementById('dEmail').textContent = curEmail;
-
-  showStep('s3');
-  setStatus('waiting');
-}
-
-// ══════════════════════════════════════════════════
-//  POLL PAYMENT STATUS every 10 seconds
-// ══════════════════════════════════════════════════
+// ── POLL STATUS every 10s ────────────────────────────
 function startPolling(pid) {
-  stopPolling();
+  stopAll();
   pollTimer = setInterval(function() { checkStatus(pid); }, 10000);
-  // Check immediately once
-  setTimeout(function() { checkStatus(pid); }, 2000);
-}
-
-function stopPolling() {
-  if (pollTimer) { clearInterval(pollTimer); pollTimer = null; }
-  if (countdown) { clearInterval(countdown); countdown = null; }
+  setTimeout(function() { checkStatus(pid); }, 3000);
 }
 
 function checkStatus(pid) {
-  fetch('https://api.nowpayments.io/v1/payment/' + pid, {
-    headers: { 'x-api-key': NP_KEY }
-  })
+  fetch(SERVER + '/payment-status/' + pid)
   .then(function(r) { return r.json(); })
   .then(function(data) {
-    var status = data.payment_status;
-    console.log('Payment status:', status);
-
-    if (status === 'waiting') {
-      setStatus('waiting');
-    } else if (status === 'confirming' || status === 'sending') {
-      setStatus('confirming');
-    } else if (status === 'partially_paid') {
-      setStatus('partial');
-    } else if (status === 'finished' || status === 'confirmed') {
-      stopPolling();
-      paymentConfirmed();
-    } else if (status === 'failed' || status === 'refunded' || status === 'expired') {
-      stopPolling();
-      showStep('s5');
+    var s = data.payment_status;
+    if (s === 'finished' || s === 'confirmed') {
+      stopAll();
+      tgNotify('✅ Payment Confirmed!\n\n🤖 ' + curBot.name + '\n💰 $' + curBot.price + '\n👤 ' + curName + '\n📧 ' + curEmail);
+      showStep('s4');
+    } else if (s === 'confirming' || s === 'sending') {
+      document.getElementById('statusBar').className = 'status-bar sc';
+      document.getElementById('statusDot').style.background = '#E67E22';
+      document.getElementById('statusTxt').textContent = 'Payment detected — confirming on blockchain…';
+    } else if (s === 'failed' || s === 'expired' || s === 'refunded') {
+      stopAll(); showStep('s5');
     }
   })
-  .catch(function(err) { console.warn('Poll error:', err); });
+  .catch(function(){});
 }
 
-function setStatus(s) {
-  var bar  = document.getElementById('statusBar');
-  var dot  = document.getElementById('statusDot');
-  var txt  = document.getElementById('statusText');
-
-  bar.className = 'status-bar';
-  dot.className = 'pulse';
-
-  if (s === 'waiting') {
-    bar.classList.add('status-waiting');
-    dot.classList.add('pulse-gold');
-    txt.textContent = 'Waiting for your payment…';
-  } else if (s === 'confirming') {
-    bar.classList.add('status-confirming');
-    dot.classList.add('pulse-orange');
-    txt.textContent = 'Payment detected — confirming on blockchain…';
-  } else if (s === 'partial') {
-    bar.classList.add('status-detecting');
-    dot.classList.add('pulse-blue');
-    txt.textContent = 'Partial payment received — waiting for full amount…';
-  } else if (s === 'confirmed') {
-    bar.classList.add('status-confirmed');
-    dot.classList.add('pulse-green');
-    txt.textContent = 'Payment confirmed! ✓';
-  }
-}
-
-// ══════════════════════════════════════════════════
-//  PAYMENT CONFIRMED
-// ══════════════════════════════════════════════════
-function paymentConfirmed() {
-  setStatus('confirmed');
-  notifyTelegram('✅ Payment Confirmed', { payment_id: paymentId }, curBot, curEmail, curName);
-
-  setTimeout(function() {
-    showStep('s4');
-  }, 1200);
-}
-
-function doDownload() {
-  // If real file is attached to bot, download it
-  var bot = curBot;
-  if (bot.file && bot.file.data) {
-    var a = document.createElement('a');
-    a.href = bot.file.data;
-    a.download = bot.file.name;
-    a.click();
-  } else {
-    // File not uploaded yet — show message
-    var btn = document.getElementById('dlBtn');
-    btn.innerHTML = '<i class="fa fa-envelope"></i> File will be sent to your email';
-    btn.style.background = '#3498DB';
-    btn.onclick = null;
-  }
-}
-
-function retryPayment() {
-  showStep('s1');
-}
-
-// ══════════════════════════════════════════════════
-//  COUNTDOWN TIMER
-// ══════════════════════════════════════════════════
-function startTimer(seconds) {
-  var remaining = seconds;
-  countdown = setInterval(function() {
-    remaining--;
-    if (remaining <= 0) {
-      clearInterval(countdown);
-      document.getElementById('timerVal').textContent = '00:00';
-      return;
-    }
-    var m = Math.floor(remaining / 60);
-    var s = remaining % 60;
-    document.getElementById('timerVal').textContent =
-      (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+// ── TIMER ────────────────────────────────────────────
+function startTimer(secs) {
+  var r = secs;
+  cntTimer = setInterval(function() {
+    r--;
+    if (r <= 0) { clearInterval(cntTimer); document.getElementById('timerVal').textContent = '00:00'; return; }
+    var m = Math.floor(r / 60), s = r % 60;
+    document.getElementById('timerVal').textContent = (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
   }, 1000);
 }
 
-// ══════════════════════════════════════════════════
-//  TELEGRAM NOTIFICATION
-// ══════════════════════════════════════════════════
-function notifyTelegram(event, payData, bot, email, name) {
-  var msg = event + ' — Trade Master No.1\n\n' +
-    '🤖 Bot: ' + bot.name + '\n' +
-    '💰 Amount: $' + bot.price + '\n' +
-    '💳 Method: USDT TRC20 (NOWPayments)\n' +
-    '🆔 Payment ID: ' + (payData.payment_id || 'N/A') + '\n\n' +
-    '👤 Customer: ' + name + '\n' +
-    '📧 Email: ' + email + '\n' +
-    '🕐 Time: ' + new Date().toLocaleString();
+function stopAll() {
+  if (pollTimer) { clearInterval(pollTimer); pollTimer = null; }
+  if (cntTimer)  { clearInterval(cntTimer);  cntTimer  = null; }
+}
 
+// ── DOWNLOAD ─────────────────────────────────────────
+function doDownload() {
+  if (curBot && curBot.file) {
+    var a = document.createElement('a');
+    a.href = curBot.file; a.download = curBot.name + '.mq5'; a.click();
+  } else {
+    alert('The seller will send the file to ' + curEmail + ' within 30 minutes.');
+  }
+}
+
+// ── COPY ─────────────────────────────────────────────
+function cpAddr() {
+  var addr = document.getElementById('payAddr').textContent;
+  navigator.clipboard.writeText(addr).then(function() {
+    var b = document.getElementById('cBtn');
+    b.textContent = 'Copied!'; b.classList.add('ok');
+    setTimeout(function() { b.textContent='Copy'; b.classList.remove('ok'); }, 2500);
+  });
+}
+
+// ── TELEGRAM ─────────────────────────────────────────
+function tgNotify(msg) {
   fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ chat_id: TG_CHAT, text: msg })
   }).catch(function(){});
-}
-
-// ══════════════════════════════════════════════════
-//  COPY ADDRESS
-// ══════════════════════════════════════════════════
-function cpAddr() {
-  var addr = document.getElementById('payAddress').textContent;
-  navigator.clipboard.writeText(addr).then(function() {
-    var b = document.getElementById('cAddr');
-    b.textContent = 'Copied!'; b.classList.add('ok');
-    setTimeout(function() { b.textContent = 'Copy'; b.classList.remove('ok'); }, 2500);
-  });
 }
 
 document.getElementById('overlay').addEventListener('click', function(e) {
