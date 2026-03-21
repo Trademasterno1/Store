@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trade Master No.1</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#F0B90B;--dark:#0B0E11;--panel:#13171D;--border:rgba(240,185,11,0.2);--text:#E6EDF4;--muted:#6B7785}
+body{font-family:'DM Sans',sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(240,185,11,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(240,185,11,0.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(11,14,17,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(–border)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;height:68px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-icon{width:40px;height:40px;background:var(–gold);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.logo-name{font-family:‘Bebas Neue’,sans-serif;font-size:24px;letter-spacing:1px}
+.logo-name span{color:var(–gold)}
+.nav-tag{font-size:11px;font-weight:700;color:var(–dark);background:var(–gold);padding:4px 12px;border-radius:20px}
+
+.hero{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:90px 24px 60px;text-align:center}
+.hero-tag{display:inline-block;font-family:‘JetBrains Mono’,monospace;font-size:11px;color:var(–gold);letter-spacing:3px;text-transform:uppercase;border:1px solid var(–border);padding:6px 16px;border-radius:4px;background:rgba(240,185,11,0.05);margin-bottom:24px}
+.hero h1{font-family:‘Bebas Neue’,sans-serif;font-size:clamp(60px,10vw,110px);line-height:0.9;margin-bottom:24px}
+.hero h1 .g{color:var(–gold)}
+.hero p{font-size:17px;color:var(–muted);max-width:500px;margin:0 auto 40px;line-height:1.6}
+.pills{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-bottom:60px}
+.pill{padding:7px 16px;border:1px solid var(–border);border-radius:4px;font-size:13px;background:rgba(255,255,255,0.03);display:flex;align-items:center;gap:7px}
+.pill::before{content:’’;width:6px;height:6px;border-radius:50%;background:var(–gold);display:block}
+
+.ticker-wrap{position:relative;z-index:1;border-top:1px solid var(–border);border-bottom:1px solid var(–border);overflow:hidden;padding:11px 0;margin-bottom:70px;background:rgba(240,185,11,0.02)}
+.ticker{display:flex;gap:50px;animation:tick 22s linear infinite;white-space:nowrap}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.t-item{font-family:‘JetBrains Mono’,monospace;font-size:13px;color:var(–muted);display:flex;align-items:center;gap:8px}
+.up{color:#2ECC71}.dn{color:#E74C3C}
+
+.section{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 24px 90px}
+.sec-label{font-family:‘JetBrains Mono’,monospace;font-size:11px;color:var(–gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:14px}
+.sec-title{font-family:‘Bebas Neue’,sans-serif;font-size:clamp(38px,5vw,60px);margin-bottom:44px;line-height:1}
+
+.bots-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px}
+.bot-card{background:var(–panel);border:1px solid var(–border);border-radius:12px;padding:28px;transition:all 0.3s;position:relative;overflow:hidden}
+.bot-card::after{content:’’;position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(–gold),transparent);opacity:0;transition:opacity 0.3s}
+.bot-card:hover{transform:translateY(-5px);border-color:rgba(240,185,11,0.5)}
+.bot-card:hover::after{opacity:1}
+.bot-ico{width:48px;height:48px;background:rgba(240,185,11,0.1);border:1px solid rgba(240,185,11,0.3);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px}
+.bot-card h3{font-family:‘Bebas Neue’,sans-serif;font-size:24px;margin-bottom:10px}
+.bot-card .desc{color:var(–muted);font-size:13px;line-height:1.65;margin-bottom:20px}
+.feat-list{list-style:none;margin-bottom:24px}
+.feat-list li{font-size:13px;color:#B8C2CC;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;align-items:center;gap:8px}
+.feat-list li:last-child{border-bottom:none}
+.feat-list li::before{content:‘▸’;color:var(–gold);font-size:11px;flex-shrink:0}
+.price-row{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:18px}
+.price{font-family:‘Bebas Neue’,sans-serif;font-size:44px;color:var(–gold);line-height:1}
+.price-sub{font-size:11px;color:var(–muted);margin-bottom:3px}
+.btn-buy{width:100%;background:var(–gold);color:#0B0E11;font-family:‘DM Sans’,sans-serif;font-weight:700;font-size:14px;padding:13px;border:none;border-radius:8px;cursor:pointer;transition:all 0.2s}
+.btn-buy:hover{background:#FFD02A;transform:scale(1.02)}
+
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+.feat-card{background:var(–panel);border:1px solid var(–border);border-radius:10px;padding:24px}
+.feat-card .ico{font-size:26px;margin-bottom:14px}
+.feat-card h4{font-weight:700;font-size:15px;margin-bottom:8px}
+.feat-card p{color:var(–muted);font-size:13px;line-height:1.6}
+
+/* MODAL */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:1000;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(8px)}
+.overlay.on{display:flex}
+.modal{background:var(–panel);border:1px solid var(–border);border-radius:16px;padding:32px;max-width:500px;width:100%;animation:up 0.3s ease;max-height:92vh;overflow-y:auto}
+@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.m-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.m-head h2{font-family:‘Bebas Neue’,sans-serif;font-size:26px}
+.m-close{width:34px;height:34px;background:rgba(255,255,255,0.06);border:none;border-radius:7px;color:var(–muted);font-size:17px;cursor:pointer}
+.m-close:hover{background:rgba(255,255,255,0.12);color:white}
+.prod-bar{background:rgba(240,185,11,0.06);border:1px solid var(–border);border-radius:9px;padding:14px 18px;margin-bottom:22px;display:flex;justify-content:space-between;align-items:center}
+.prod-bar .pprice{font-family:‘Bebas Neue’,sans-serif;font-size:28px;color:var(–gold)}
+
+.step{display:none}.step.on{display:block}
+
+.field{margin-bottom:14px}
+.field label{display:block;font-size:11px;font-weight:700;color:var(–muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:7px;font-family:‘JetBrains Mono’,monospace}
+.field input{width:100%;background:rgba(255,255,255,0.05);border:1px solid var(–border);border-radius:8px;padding:12px 14px;color:var(–text);font-family:‘DM Sans’,sans-serif;font-size:14px;outline:none;transition:border-color 0.2s}
+.field input:focus{border-color:var(–gold)}
+.field input::placeholder{color:var(–muted)}
+
+/* Payment box - NOWPayments */
+.pay-box{background:rgba(255,255,255,0.03);border:1px solid var(–border);border-radius:10px;padding:20px;margin-bottom:16px;text-align:center}
+.pay-box .coin-icon{font-size:36px;margin-bottom:10px}
+.pay-box .pay-amount{font-family:‘Bebas Neue’,sans-serif;font-size:38px;color:var(–gold);line-height:1;margin-bottom:4px}
+.pay-box .pay-curr{font-size:12px;color:var(–muted);margin-bottom:16px;font-family:‘JetBrains Mono’,monospace}
+.addr-box{background:rgba(255,255,255,0.04);border:1px solid var(–border);border-radius:9px;padding:14px;margin-bottom:12px}
+.net-badge{display:inline-block;font-size:10px;font-weight:700;color:white;background:#26A17B;padding:3px 9px;border-radius:4px;margin-bottom:10px;font-family:‘JetBrains Mono’,monospace}
+.addr-row{display:flex;align-items:center;gap:8px}
+.addr-txt{font-family:‘JetBrains Mono’,monospace;font-size:11px;color:var(–text);flex:1;word-break:break-all;line-height:1.5}
+.qr-c{text-align:center;margin:12px 0 4px}
+.qr-c img{background:white;padding:8px;border-radius:8px;width:120px;height:120px}
+
+/* Timer */
+.timer-wrap{background:rgba(240,185,11,0.06);border:1px solid var(–border);border-radius:8px;padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between}
+.timer-label{font-size:12px;color:var(–muted);font-family:‘JetBrains Mono’,monospace}
+.timer-val{font-family:‘Bebas Neue’,sans-serif;font-size:24px;color:var(–gold)}
+
+/* Status bar */
+.status-bar{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:8px;margin-bottom:14px;font-size:13px;font-weight:600}
+.status-waiting{background:rgba(240,185,11,0.08);border:1px solid rgba(240,185,11,0.25);color:var(–gold)}
+.status-detecting{background:rgba(52,152,219,0.08);border:1px solid rgba(52,152,219,0.25);color:#4FC3F7}
+.status-confirming{background:rgba(230,126,34,0.08);border:1px solid rgba(230,126,34,0.25);color:#E67E22}
+.status-confirmed{background:rgba(46,204,113,0.08);border:1px solid rgba(46,204,113,0.25);color:#2ECC71}
+.pulse{width:8px;height:8px;border-radius:50%;flex-shrink:0;animation:pulse 1.5s ease infinite}
+.pulse-gold{background:var(–gold)}
+.pulse-blue{background:#4FC3F7}
+.pulse-orange{background:#E67E22}
+.pulse-green{background:#2ECC71}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+
+.btn-copy{background:var(–gold);color:#0B0E11;border:none;padding:8px 12px;border-radius:6px;font-weight:700;font-size:11px;cursor:pointer;white-space:nowrap;transition:all 0.2s;font-family:‘DM Sans’,sans-serif;flex-shrink:0}
+.btn-copy:hover{background:#FFD02A}
+.btn-copy.ok{background:#2ECC71;color:white}
+.btn-main{width:100%;background:var(–gold);color:#0B0E11;font-family:‘DM Sans’,sans-serif;font-weight:700;font-size:14px;padding:13px;border:none;border-radius:8px;cursor:pointer;transition:all 0.2s;margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-main:hover{background:#FFD02A}
+.btn-ghost{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(–border);color:var(–muted);font-family:‘DM Sans’,sans-serif;font-weight:600;font-size:13px;padding:11px;border-radius:8px;cursor:pointer;transition:all 0.2s}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.2);color:var(–text)}
+
+/* Spinner */
+.spin-panel{text-align:center;padding:30px 0}
+.spinner{width:48px;height:48px;border:3px solid rgba(240,185,11,0.15);border-top-color:var(–gold);border-radius:50%;animation:spin 0.9s linear infinite;margin:0 auto 16px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin-panel h3{font-family:‘Bebas Neue’,sans-serif;font-size:24px;margin-bottom:8px}
+.spin-panel p{color:var(–muted);font-size:13px;line-height:1.6}
+
+/* Success */
+.done-panel{text-align:center;padding:10px 0}
+.done-icon{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 18px;background:rgba(46,204,113,0.12);border:2px solid #2ECC71}
+.done-panel h3{font-family:‘Bebas Neue’,sans-serif;font-size:30px;color:#2ECC71;margin-bottom:10px}
+.done-panel p{color:var(–muted);font-size:13px;line-height:1.65;margin-bottom:10px}
+.btn-dl{width:100%;background:#2ECC71;color:#0B0E11;font-family:‘DM Sans’,sans-serif;font-weight:700;font-size:15px;padding:14px;border:none;border-radius:8px;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-dl:hover{background:#27AE60}
+
+footer{position:relative;z-index:1;border-top:1px solid var(–border);padding:36px 24px;text-align:center}
+.f-logo{font-family:‘Bebas Neue’,sans-serif;font-size:22px;color:var(–gold);margin-bottom:10px}
+.f-copy{color:var(–muted);font-size:12px;line-height:1.7}
+.f-admin{margin-top:14px}
+.f-admin a{color:var(–muted);font-size:11px;text-decoration:none;font-family:‘JetBrains Mono’,monospace;opacity:0.35;transition:opacity 0.2s}
+.f-admin a:hover{opacity:1;color:var(–gold)}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(–dark)}
+::-webkit-scrollbar-thumb{background:rgba(240,185,11,0.3);border-radius:3px}
+</style>
+
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">
+      <div class="logo-icon">⚡</div>
+      <div class="logo-name">Trade Master <span>No.1</span></div>
+    </div>
+    <span class="nav-tag">PROFESSIONAL BOTS</span>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-tag">Next-Generation Algorithmic Trading</div>
+  <h1><div>TRADE</div><div class="g">SMARTER.</div><div>WIN MORE.</div></h1>
+  <p>Professional Expert Advisors for MetaTrader 5. Advanced strategies, precision execution, institutional-grade risk management.</p>
+  <div class="pills">
+    <span class="pill">Backtested &amp; Verified</span>
+    <span class="pill">24/7 Support</span>
+    <span class="pill">Lifetime License</span>
+    <span class="pill">Free Updates</span>
+  </div>
+</section>
+
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span class="t-item">XAUUSD <span class="up">+0.34%</span></span>
+    <span class="t-item">EURUSD <span class="dn">-0.12%</span></span>
+    <span class="t-item">BTCUSDT <span class="up">+1.87%</span></span>
+    <span class="t-item">US30 <span class="up">+0.55%</span></span>
+    <span class="t-item">GBPUSD <span class="dn">-0.08%</span></span>
+    <span class="t-item">NAS100 <span class="up">+0.92%</span></span>
+    <span class="t-item">ETHUSDT <span class="up">+2.14%</span></span>
+    <span class="t-item">USDJPY <span class="dn">-0.31%</span></span>
+    <span class="t-item">XAUUSD <span class="up">+0.34%</span></span>
+    <span class="t-item">EURUSD <span class="dn">-0.12%</span></span>
+    <span class="t-item">BTCUSDT <span class="up">+1.87%</span></span>
+    <span class="t-item">US30 <span class="up">+0.55%</span></span>
+    <span class="t-item">GBPUSD <span class="dn">-0.08%</span></span>
+    <span class="t-item">NAS100 <span class="up">+0.92%</span></span>
+    <span class="t-item">ETHUSDT <span class="up">+2.14%</span></span>
+    <span class="t-item">USDJPY <span class="dn">-0.31%</span></span>
+  </div>
+</div>
+
+<section class="section">
+  <div class="sec-label">// OUR PRODUCTS</div>
+  <h2 class="sec-title">Available Bots</h2>
+  <div class="bots-grid" id="botsGrid"></div>
+</section>
+
+<section class="section">
+  <div class="sec-label">// WHY CHOOSE US</div>
+  <h2 class="sec-title">Built Different</h2>
+  <div class="feat-grid">
+    <div class="feat-card"><div class="ico">🎯</div><h4>Precision Entries</h4><p>Multi-filtered signals on real market data for maximum edge.</p></div>
+    <div class="feat-card"><div class="ico">🛡️</div><h4>Risk Management</h4><p>ATR-based SL/TP, 4-phase trailing stop, daily drawdown kill switch.</p></div>
+    <div class="feat-card"><div class="ico">⚙️</div><h4>Fully Customizable</h4><p>Extensive parameters to match your risk profile and broker.</p></div>
+    <div class="feat-card"><div class="ico">📈</div><h4>Free Updates</h4><p>Bots evolve with the market. All updates are free for life.</p></div>
+  </div>
+</section>
+
+<!-- PAYMENT MODAL -->
+
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <div class="m-head">
+      <h2>Complete Purchase</h2>
+      <button class="m-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="prod-bar">
+      <div>
+        <div style="font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:1px;margin-bottom:4px">PRODUCT</div>
+        <div style="font-weight:600;font-size:14px" id="mName"></div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:1px;margin-bottom:4px">TOTAL</div>
+        <div class="pprice" id="mPrice"></div>
+      </div>
+    </div>
+
+```
+<!-- S1: Email -->
+<div class="step on" id="s1">
+  <div style="background:rgba(240,185,11,0.06);border:1px solid var(--border);border-radius:8px;padding:13px;margin-bottom:18px;font-size:13px;color:var(--muted);line-height:1.6">
+    ⚡ Pay with USDT — payment verified automatically on the blockchain. Download starts instantly after confirmation.
+  </div>
+  <div class="field">
+    <label>Your Email Address *</label>
+    <input type="email" id="inEmail" placeholder="yourname@email.com">
+  </div>
+  <div class="field">
+    <label>Your Name (optional)</label>
+    <input type="text" id="inName" placeholder="e.g. John">
+  </div>
+  <button class="btn-main" onclick="createPayment()">
+    <i class="fa fa-bolt"></i> Generate Payment Address
+  </button>
+  <button class="btn-ghost" onclick="closeModal()">Cancel</button>
+</div>
+
+<!-- S2: Creating payment -->
+<div class="step" id="s2">
+  <div class="spin-panel">
+    <div class="spinner"></div>
+    <h3>Creating Payment…</h3>
+    <p>Generating your unique payment address.<br>Please wait.</p>
+  </div>
+</div>
+
+<!-- S3: Waiting for payment -->
+<div class="step" id="s3">
+  <div class="status-bar status-waiting" id="statusBar">
+    <span class="pulse pulse-gold" id="statusDot"></span>
+    <span id="statusText">Waiting for payment…</span>
+  </div>
+
+  <div class="pay-box">
+    <div class="coin-icon">💲</div>
+    <div class="pay-amount" id="payAmount"></div>
+    <div class="pay-curr">USDT · TRC20</div>
+
+    <div class="addr-box">
+      <div class="net-badge">TRC20 Network Only</div>
+      <div style="font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:1px;margin-bottom:8px">SEND TO THIS ADDRESS</div>
+      <div class="addr-row">
+        <div class="addr-txt" id="payAddress"></div>
+        <button class="btn-copy" id="cAddr" onclick="cpAddr()">Copy</button>
+      </div>
+      <div class="qr-c">
+        <img id="payQR" src="" alt="QR Code">
+      </div>
+    </div>
+  </div>
+
+  <div class="timer-wrap">
+    <span class="timer-label">⏱ Payment window</span>
+    <span class="timer-val" id="timerVal">20:00</span>
+  </div>
+
+  <div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:7px;padding:12px 14px;font-size:12px;color:var(--muted);line-height:1.6">
+    ⚠️ Send <b style="color:var(--text)">exact amount</b> via <b style="color:var(--gold)">TRC20 only</b>.<br>
+    Page updates automatically — do not close this window.
+  </div>
+</div>
+
+<!-- S4: Confirmed — Download -->
+<div class="step" id="s4">
+  <div class="done-panel">
+    <div class="done-icon">✓</div>
+    <h3>Payment Confirmed!</h3>
+    <p>Blockchain verified your transaction.<br>Your download is ready.</p>
+    <button class="btn-dl" id="dlBtn" onclick="doDownload()">
+      <i class="fa fa-download"></i> Download Bot Now
+    </button>
+    <div style="margin-top:16px;font-size:12px;color:var(--muted)">
+      A copy will also be sent to <span id="dEmail" style="color:#4FC3F7;font-family:'JetBrains Mono',monospace"></span>
+    </div>
+  </div>
+</div>
+
+<!-- S5: Expired -->
+<div class="step" id="s5">
+  <div style="text-align:center;padding:20px 0">
+    <div style="font-size:48px;margin-bottom:16px">⌛</div>
+    <h3 style="font-family:'Bebas Neue',sans-serif;font-size:26px;color:#E74C3C;margin-bottom:10px">Payment Expired</h3>
+    <p style="color:var(--muted);font-size:13px;margin-bottom:20px">The payment window has closed. Please try again.</p>
+    <button class="btn-main" onclick="retryPayment()">Try Again</button>
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+<footer>
+  <div class="f-logo">TRADE MASTER NO.1</div>
+  <div class="f-copy">© 2024 Trade Master No.1 — All rights reserved.<br>Trading bots for educational and commercial use. Trade at your own risk.</div>
+  <div class="f-admin"><a href="admin.html"><i class="fa fa-lock"></i> Admin</a></div>
+</footer>
+
+<script>
+// ══════════════════════════════════════════════════
+//  CONFIG
+// ══════════════════════════════════════════════════
+var NP_KEY    = '0W3AZTD-AASMFJW-J0MKP0A-7QJ3V70';  // NOWPayments API Key
+var TG_TOKEN  = '8673048238:AAE7mw5_2z-o6SFcQuHqkjHUSlZ2JNzkZ08';
+var TG_CHAT   = '1150672935';
+
+// ══════════════════════════════════════════════════
+//  BOTS (hardcoded)
+// ══════════════════════════════════════════════════
+var BOTS = [
+  {
+    id: 1,
+    name: 'GoldScalper AI — SMC Edition',
+    price: 79,
+    desc: 'Advanced gold (XAUUSD) scalper built on Smart Money Concepts. Detects institutional order blocks, FVG zones, and liquidity sweeps on M5/M15. Dual strategy: SMC + Bollinger Bands breakout.',
+    feats: ['SMC Order Block & FVG detection','ATR-based dynamic SL/TP','4-phase trailing stop','Session & spread filter','Daily loss kill switch','Live dashboard on chart'],
+    file: { name: 'GoldScalper_AI_SMC.mq5', url: null }
+  },
+  {
+    id: 2,
+    name: 'Gold Scalping Sniper v4.2',
+    price: 49,
+    desc: 'High-frequency M5 gold scalper using EMA crossover + RSI confirmation. 4-phase trailing stop: break-even → normal trail → tight trail → profit lock. Broker-agnostic tick calculations.',
+    feats: ['EMA crossover + RSI confirmation','Closed-bar data — no repainting','Broker-agnostic tick calculation','4-phase trailing stop (BE → Lock)','Retry loop on order errors','News blackout system'],
+    file: { name: 'Gold_Scalping_Sniper_v4.2.mq5', url: null }
+  }
+];
+
+// ══════════════════════════════════════════════════
+//  RENDER BOTS
+// ══════════════════════════════════════════════════
+(function() {
+  var g = document.getElementById('botsGrid');
+  var h = '';
+  for (var i = 0; i < BOTS.length; i++) {
+    var b = BOTS[i];
+    var fl = '';
+    for (var j = 0; j < b.feats.length; j++) fl += '<li>' + b.feats[j] + '</li>';
+    h += '<div class="bot-card">' +
+      '<div class="bot-ico">⚡</div>' +
+      '<h3>' + b.name + '</h3>' +
+      '<p class="desc">' + b.desc + '</p>' +
+      '<ul class="feat-list">' + fl + '</ul>' +
+      '<div class="price-row"><div><div class="price">$' + b.price + '</div><div class="price-sub">Lifetime license</div></div>' +
+      '<div style="font-size:10px;color:var(--muted);font-family:JetBrains Mono,monospace">MQ5</div></div>' +
+      '<button class="btn-buy" onclick="openModal(' + b.id + ')">Buy Now — $' + b.price + '</button>' +
+    '</div>';
+  }
+  g.innerHTML = h;
+})();
+
+// ══════════════════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════════════════
+var curBot     = null;
+var paymentId  = null;
+var pollTimer  = null;
+var countdown  = null;
+var curEmail   = '';
+var curName    = '';
+
+function openModal(botId) {
+  for (var i = 0; i < BOTS.length; i++) {
+    if (BOTS[i].id === botId) { curBot = BOTS[i]; break; }
+  }
+  document.getElementById('mName').textContent  = curBot.name;
+  document.getElementById('mPrice').textContent = '$' + curBot.price;
+  document.getElementById('inEmail').value = '';
+  document.getElementById('inName').value  = '';
+  paymentId = null;
+  showStep('s1');
+  document.getElementById('overlay').classList.add('on');
+}
+
+function closeModal() {
+  stopPolling();
+  document.getElementById('overlay').classList.remove('on');
+}
+
+function showStep(id) {
+  var steps = ['s1','s2','s3','s4','s5'];
+  for (var i = 0; i < steps.length; i++) document.getElementById(steps[i]).classList.remove('on');
+  document.getElementById(id).classList.add('on');
+}
+
+// ══════════════════════════════════════════════════
+//  CREATE PAYMENT — NOWPayments API
+// ══════════════════════════════════════════════════
+function createPayment() {
+  curEmail = document.getElementById('inEmail').value.trim();
+  curName  = document.getElementById('inName').value.trim() || 'Customer';
+
+  if (!curEmail || curEmail.indexOf('@') < 0) {
+    alert('Please enter a valid email address.'); return;
+  }
+
+  showStep('s2');
+
+  var body = {
+    price_amount:    curBot.price,
+    price_currency:  'usd',
+    pay_currency:    'usdttrc20',
+    order_id:        'TM1-' + curBot.id + '-' + Date.now(),
+    order_description: curBot.name + ' — Trade Master No.1',
+    case: 'success'
+  };
+
+  fetch('https://api.nowpayments.io/v1/payment', {
+    method: 'POST',
+    headers: {
+      'x-api-key': NP_KEY,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    if (data.payment_id) {
+      paymentId = data.payment_id;
+      showPaymentScreen(data);
+      startPolling(data.payment_id);
+      startTimer(20 * 60); // 20 minutes
+      notifyTelegram('🆕 Payment Created', data, curBot, curEmail, curName);
+    } else {
+      alert('Error creating payment: ' + (data.message || 'Unknown error'));
+      showStep('s1');
+    }
+  })
+  .catch(function(err) {
+    alert('Network error. Please check your connection and try again.');
+    console.error(err);
+    showStep('s1');
+  });
+}
+
+function showPaymentScreen(data) {
+  var addr   = data.pay_address;
+  var amount = data.pay_amount;
+
+  document.getElementById('payAmount').textContent  = amount + ' USDT';
+  document.getElementById('payAddress').textContent = addr;
+  document.getElementById('payQR').src = 'https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=' + addr;
+  document.getElementById('dEmail').textContent = curEmail;
+
+  showStep('s3');
+  setStatus('waiting');
+}
+
+// ══════════════════════════════════════════════════
+//  POLL PAYMENT STATUS every 10 seconds
+// ══════════════════════════════════════════════════
+function startPolling(pid) {
+  stopPolling();
+  pollTimer = setInterval(function() { checkStatus(pid); }, 10000);
+  // Check immediately once
+  setTimeout(function() { checkStatus(pid); }, 2000);
+}
+
+function stopPolling() {
+  if (pollTimer) { clearInterval(pollTimer); pollTimer = null; }
+  if (countdown) { clearInterval(countdown); countdown = null; }
+}
+
+function checkStatus(pid) {
+  fetch('https://api.nowpayments.io/v1/payment/' + pid, {
+    headers: { 'x-api-key': NP_KEY }
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    var status = data.payment_status;
+    console.log('Payment status:', status);
+
+    if (status === 'waiting') {
+      setStatus('waiting');
+    } else if (status === 'confirming' || status === 'sending') {
+      setStatus('confirming');
+    } else if (status === 'partially_paid') {
+      setStatus('partial');
+    } else if (status === 'finished' || status === 'confirmed') {
+      stopPolling();
+      paymentConfirmed();
+    } else if (status === 'failed' || status === 'refunded' || status === 'expired') {
+      stopPolling();
+      showStep('s5');
+    }
+  })
+  .catch(function(err) { console.warn('Poll error:', err); });
+}
+
+function setStatus(s) {
+  var bar  = document.getElementById('statusBar');
+  var dot  = document.getElementById('statusDot');
+  var txt  = document.getElementById('statusText');
+
+  bar.className = 'status-bar';
+  dot.className = 'pulse';
+
+  if (s === 'waiting') {
+    bar.classList.add('status-waiting');
+    dot.classList.add('pulse-gold');
+    txt.textContent = 'Waiting for your payment…';
+  } else if (s === 'confirming') {
+    bar.classList.add('status-confirming');
+    dot.classList.add('pulse-orange');
+    txt.textContent = 'Payment detected — confirming on blockchain…';
+  } else if (s === 'partial') {
+    bar.classList.add('status-detecting');
+    dot.classList.add('pulse-blue');
+    txt.textContent = 'Partial payment received — waiting for full amount…';
+  } else if (s === 'confirmed') {
+    bar.classList.add('status-confirmed');
+    dot.classList.add('pulse-green');
+    txt.textContent = 'Payment confirmed! ✓';
+  }
+}
+
+// ══════════════════════════════════════════════════
+//  PAYMENT CONFIRMED
+// ══════════════════════════════════════════════════
+function paymentConfirmed() {
+  setStatus('confirmed');
+  notifyTelegram('✅ Payment Confirmed', { payment_id: paymentId }, curBot, curEmail, curName);
+
+  setTimeout(function() {
+    showStep('s4');
+  }, 1200);
+}
+
+function doDownload() {
+  // If real file is attached to bot, download it
+  var bot = curBot;
+  if (bot.file && bot.file.data) {
+    var a = document.createElement('a');
+    a.href = bot.file.data;
+    a.download = bot.file.name;
+    a.click();
+  } else {
+    // File not uploaded yet — show message
+    var btn = document.getElementById('dlBtn');
+    btn.innerHTML = '<i class="fa fa-envelope"></i> File will be sent to your email';
+    btn.style.background = '#3498DB';
+    btn.onclick = null;
+  }
+}
+
+function retryPayment() {
+  showStep('s1');
+}
+
+// ══════════════════════════════════════════════════
+//  COUNTDOWN TIMER
+// ══════════════════════════════════════════════════
+function startTimer(seconds) {
+  var remaining = seconds;
+  countdown = setInterval(function() {
+    remaining--;
+    if (remaining <= 0) {
+      clearInterval(countdown);
+      document.getElementById('timerVal').textContent = '00:00';
+      return;
+    }
+    var m = Math.floor(remaining / 60);
+    var s = remaining % 60;
+    document.getElementById('timerVal').textContent =
+      (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+  }, 1000);
+}
+
+// ══════════════════════════════════════════════════
+//  TELEGRAM NOTIFICATION
+// ══════════════════════════════════════════════════
+function notifyTelegram(event, payData, bot, email, name) {
+  var msg = event + ' — Trade Master No.1\n\n' +
+    '🤖 Bot: ' + bot.name + '\n' +
+    '💰 Amount: $' + bot.price + '\n' +
+    '💳 Method: USDT TRC20 (NOWPayments)\n' +
+    '🆔 Payment ID: ' + (payData.payment_id || 'N/A') + '\n\n' +
+    '👤 Customer: ' + name + '\n' +
+    '📧 Email: ' + email + '\n' +
+    '🕐 Time: ' + new Date().toLocaleString();
+
+  fetch('https://api.telegram.org/bot' + TG_TOKEN + '/sendMessage', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ chat_id: TG_CHAT, text: msg })
+  }).catch(function(){});
+}
+
+// ══════════════════════════════════════════════════
+//  COPY ADDRESS
+// ══════════════════════════════════════════════════
+function cpAddr() {
+  var addr = document.getElementById('payAddress').textContent;
+  navigator.clipboard.writeText(addr).then(function() {
+    var b = document.getElementById('cAddr');
+    b.textContent = 'Copied!'; b.classList.add('ok');
+    setTimeout(function() { b.textContent = 'Copy'; b.classList.remove('ok'); }, 2500);
+  });
+}
+
+document.getElementById('overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+</script>
+
+</body>
+</html>
