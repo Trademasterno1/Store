@@ -40,27 +40,20 @@ nav{position:sticky;top:0;z-index:100;background:rgba(11,14,17,0.95);backdrop-fi
 .sec-label{font-family:‘JetBrains Mono’,monospace;font-size:11px;color:var(–gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:14px}
 .sec-title{font-family:‘Bebas Neue’,sans-serif;font-size:clamp(38px,5vw,60px);margin-bottom:44px;line-height:1}
 
-/* BOT CARDS */
 .bots-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px}
 .bot-card{background:var(–panel);border:1px solid var(–border);border-radius:12px;overflow:hidden;transition:all 0.3s;position:relative}
 .bot-card::after{content:’’;position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(–gold),transparent);opacity:0;transition:opacity 0.3s}
 .bot-card:hover{transform:translateY(-5px);border-color:rgba(240,185,11,0.5)}
 .bot-card:hover::after{opacity:1}
-
-/* Bot image */
-.bot-img{width:100%;height:200px;object-fit:cover;display:block;background:rgba(240,185,11,0.05)}
+.bot-img{width:100%;height:200px;object-fit:cover;display:block}
 .bot-img-placeholder{width:100%;height:200px;background:rgba(240,185,11,0.05);display:flex;align-items:center;justify-content:center;font-size:48px;border-bottom:1px solid var(–border)}
-
 .bot-body{padding:24px}
 .bot-card h3{font-family:‘Bebas Neue’,sans-serif;font-size:22px;margin-bottom:10px}
 .bot-card .desc{color:var(–muted);font-size:13px;line-height:1.65;margin-bottom:16px}
-
-/* Files included badges */
 .files-included{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
-.file-badge{font-size:10px;font-weight:700;padding:3px 9px;border-radius:4px;font-family:‘JetBrains Mono’,monospace;display:flex;align-items:center;gap:4px}
+.file-badge{font-size:10px;font-weight:700;padding:3px 9px;border-radius:4px;font-family:‘JetBrains Mono’,monospace}
 .badge-ex5{background:rgba(240,185,11,0.12);color:var(–gold);border:1px solid rgba(240,185,11,0.3)}
 .badge-ind{background:rgba(46,204,113,0.12);color:#2ECC71;border:1px solid rgba(46,204,113,0.3)}
-
 .feat-list{list-style:none;margin-bottom:20px}
 .feat-list li{font-size:13px;color:#B8C2CC;padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;align-items:center;gap:8px}
 .feat-list li:last-child{border-bottom:none}
@@ -77,7 +70,6 @@ nav{position:sticky;top:0;z-index:100;background:rgba(11,14,17,0.95);backdrop-fi
 .feat-card h4{font-weight:700;font-size:15px;margin-bottom:8px}
 .feat-card p{color:var(–muted);font-size:13px;line-height:1.6}
 
-/* MODAL */
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:1000;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(8px)}
 .overlay.on{display:flex}
 .modal{background:var(–panel);border:1px solid var(–border);border-radius:16px;padding:32px;max-width:500px;width:100%;animation:up 0.3s ease;max-height:92vh;overflow-y:auto}
@@ -88,14 +80,12 @@ nav{position:sticky;top:0;z-index:100;background:rgba(11,14,17,0.95);backdrop-fi
 .m-close:hover{background:rgba(255,255,255,0.12);color:white}
 .prod-bar{background:rgba(240,185,11,0.06);border:1px solid var(–border);border-radius:9px;padding:14px 18px;margin-bottom:22px;display:flex;justify-content:space-between;align-items:center}
 .pprice{font-family:‘Bebas Neue’,sans-serif;font-size:28px;color:var(–gold)}
-
 .step{display:none}.step.on{display:block}
 .field{margin-bottom:14px}
 .field label{display:block;font-size:11px;font-weight:700;color:var(–muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:7px;font-family:‘JetBrains Mono’,monospace}
 .field input{width:100%;background:rgba(255,255,255,0.05);border:1px solid var(–border);border-radius:8px;padding:12px 14px;color:var(–text);font-family:‘DM Sans’,sans-serif;font-size:14px;outline:none;transition:border-color 0.2s}
 .field input:focus{border-color:var(–gold)}
 .field input::placeholder{color:var(–muted)}
-
 .pay-box{background:rgba(255,255,255,0.03);border:1px solid var(–border);border-radius:10px;padding:20px;margin-bottom:16px;text-align:center}
 .pay-amount{font-family:‘Bebas Neue’,sans-serif;font-size:38px;color:var(–gold);line-height:1;margin-bottom:4px}
 .pay-curr{font-size:12px;color:var(–muted);margin-bottom:16px;font-family:‘JetBrains Mono’,monospace}
@@ -105,30 +95,25 @@ nav{position:sticky;top:0;z-index:100;background:rgba(11,14,17,0.95);backdrop-fi
 .addr-txt{font-family:‘JetBrains Mono’,monospace;font-size:11px;color:var(–text);flex:1;word-break:break-all;line-height:1.5}
 .qr-c{text-align:center;margin:12px 0 4px}
 .qr-c img{background:white;padding:8px;border-radius:8px;width:120px;height:120px}
-
 .timer-wrap{background:rgba(240,185,11,0.06);border:1px solid var(–border);border-radius:8px;padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between}
 .timer-label{font-size:12px;color:var(–muted);font-family:‘JetBrains Mono’,monospace}
 .timer-val{font-family:‘Bebas Neue’,sans-serif;font-size:24px;color:var(–gold)}
-
 .status-bar{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:8px;margin-bottom:14px;font-size:13px;font-weight:600}
 .sw{background:rgba(240,185,11,0.08);border:1px solid rgba(240,185,11,0.25);color:var(–gold)}
 .sc{background:rgba(230,126,34,0.08);border:1px solid rgba(230,126,34,0.25);color:#E67E22}
 .pulse{width:8px;height:8px;border-radius:50%;flex-shrink:0;animation:pulse 1.5s ease infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
-
 .btn-copy{background:var(–gold);color:#0B0E11;border:none;padding:8px 12px;border-radius:6px;font-weight:700;font-size:11px;cursor:pointer;white-space:nowrap;transition:all 0.2s;font-family:‘DM Sans’,sans-serif;flex-shrink:0}
 .btn-copy.ok{background:#2ECC71;color:white}
 .btn-main{width:100%;background:var(–gold);color:#0B0E11;font-family:‘DM Sans’,sans-serif;font-weight:700;font-size:14px;padding:13px;border:none;border-radius:8px;cursor:pointer;transition:all 0.2s;margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:8px}
 .btn-main:hover{background:#FFD02A}
 .btn-ghost{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(–border);color:var(–muted);font-family:‘DM Sans’,sans-serif;font-weight:600;font-size:13px;padding:11px;border-radius:8px;cursor:pointer}
 .btn-ghost:hover{border-color:rgba(255,255,255,0.2);color:var(–text)}
-
 .spin-panel{text-align:center;padding:30px 0}
 .spinner{width:48px;height:48px;border:3px solid rgba(240,185,11,0.15);border-top-color:var(–gold);border-radius:50%;animation:spin 0.9s linear infinite;margin:0 auto 16px}
 @keyframes spin{to{transform:rotate(360deg)}}
 .spin-panel h3{font-family:‘Bebas Neue’,sans-serif;font-size:24px;margin-bottom:8px}
 .spin-panel p{color:var(–muted);font-size:13px;line-height:1.6}
-
 .done-panel{text-align:center;padding:10px 0}
 .done-icon{width:72px;height:72px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 18px;background:rgba(46,204,113,0.12);border:2px solid #2ECC71}
 .done-panel h3{font-family:‘Bebas Neue’,sans-serif;font-size:30px;color:#2ECC71;margin-bottom:10px}
@@ -196,7 +181,12 @@ footer{position:relative;z-index:1;border-top:1px solid var(–border);padding:3
 <section class="section">
   <div class="sec-label">// OUR PRODUCTS</div>
   <h2 class="sec-title">Available Bots</h2>
-  <div class="bots-grid" id="botsGrid"></div>
+  <div class="bots-grid" id="botsGrid">
+    <div style="color:var(--muted);text-align:center;grid-column:1/-1;padding:60px 0">
+      <div style="font-size:32px;margin-bottom:12px">⚡</div>
+      Loading bots...
+    </div>
+  </div>
 </section>
 
 <section class="section">
@@ -228,12 +218,10 @@ footer{position:relative;z-index:1;border-top:1px solid var(–border);padding:3
         <div class="pprice" id="mPrice"></div>
       </div>
     </div>
+    <div id="mFiles" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px"></div>
 
 ```
-<!-- Included files info -->
-<div id="mFiles" style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px;"></div>
-
-<!-- S1: Email -->
+<!-- S1 -->
 <div class="step on" id="s1">
   <div style="background:rgba(240,185,11,0.06);border:1px solid var(--border);border-radius:8px;padding:13px;margin-bottom:18px;font-size:13px;color:var(--muted);line-height:1.6">
     ⚡ Pay with USDT — verified automatically on blockchain. Download starts instantly after confirmation.
@@ -246,13 +234,11 @@ footer{position:relative;z-index:1;border-top:1px solid var(–border);padding:3
     <label>Your Name (optional)</label>
     <input type="text" id="inName" placeholder="e.g. John">
   </div>
-  <button class="btn-main" onclick="createPayment()">
-    <i class="fa fa-bolt"></i> Generate Payment Address
-  </button>
+  <button class="btn-main" onclick="createPayment()"><i class="fa fa-bolt"></i> Generate Payment Address</button>
   <button class="btn-ghost" onclick="closeModal()">Cancel</button>
 </div>
 
-<!-- S2: Creating -->
+<!-- S2 -->
 <div class="step" id="s2">
   <div class="spin-panel">
     <div class="spinner"></div>
@@ -261,7 +247,7 @@ footer{position:relative;z-index:1;border-top:1px solid var(–border);padding:3
   </div>
 </div>
 
-<!-- S3: Waiting -->
+<!-- S3 -->
 <div class="step" id="s3">
   <div class="status-bar sw" id="statusBar">
     <span class="pulse" id="statusDot" style="background:var(--gold)"></span>
@@ -290,23 +276,20 @@ footer{position:relative;z-index:1;border-top:1px solid var(–border);padding:3
   </div>
 </div>
 
-<!-- S4: Confirmed -->
+<!-- S4 -->
 <div class="step" id="s4">
   <div class="done-panel">
     <div class="done-icon">✓</div>
     <h3>Payment Confirmed!</h3>
-    <p>Blockchain verified your transaction.<br>Your files are ready to download.</p>
-    <button class="btn-dl" id="dlMain" onclick="doDownload('main')">
-      <i class="fa fa-download"></i> Download Bot (.ex5)
-    </button>
-    <div id="dlIndicators"></div>
+    <p>Blockchain verified your transaction.<br>Your files are ready.</p>
+    <div id="dlButtons"></div>
     <div style="margin-top:12px;font-size:12px;color:var(--muted)">
       Receipt sent to <span id="dEmail" style="color:#4FC3F7;font-family:'JetBrains Mono',monospace"></span>
     </div>
   </div>
 </div>
 
-<!-- S5: Expired -->
+<!-- S5 -->
 <div class="step" id="s5">
   <div style="text-align:center;padding:20px 0">
     <div style="font-size:48px;margin-bottom:16px">⌛</div>
@@ -331,31 +314,48 @@ var SERVER   = 'https://store-his6.onrender.com';
 var TG_TOKEN = '8673048238:AAE7mw5_2z-o6SFcQuHqkjHUSlZ2JNzkZ08';
 var TG_CHAT  = '1150672935';
 
-// Load bots from localStorage (added via admin)
-var sd = JSON.parse(localStorage.getItem('storeData')) || { bots: [], orders: [] };
+var curBot    = null;
+var paymentId = null;
+var pollTimer = null;
+var cntTimer  = null;
+var curEmail  = '';
+var curName   = '';
+var allBots   = [];
 
-// Render bots
-(function() {
+// Load bots from Render server
+window.addEventListener('load', function() {
+  fetch(SERVER + '/api/bots')
+    .then(function(r) { return r.json(); })
+    .then(function(bots) {
+      allBots = bots;
+      renderBots(bots);
+    })
+    .catch(function() {
+      document.getElementById('botsGrid').innerHTML =
+        '<p style="color:var(--muted);text-align:center;grid-column:1/-1;padding:60px 0">Could not load bots. Please try again later.</p>';
+    });
+});
+
+function renderBots(bots) {
   var g = document.getElementById('botsGrid');
-  if (!sd.bots.length) {
-    g.innerHTML = '<p style="color:var(--muted);text-align:center;grid-column:1/-1;padding:60px 0;font-size:15px;">No bots available yet. Check back soon.</p>';
+  if (!bots.length) {
+    g.innerHTML = '<p style="color:var(--muted);text-align:center;grid-column:1/-1;padding:60px 0;font-size:15px">No bots available yet. Check back soon.</p>';
     return;
   }
   var h = '';
-  for (var i = 0; i < sd.bots.length; i++) {
-    var b = sd.bots[i];
+  for (var i = 0; i < bots.length; i++) {
+    var b = bots[i];
     var fl = '';
-    for (var j = 0; j < b.features.length; j++) fl += '<li>' + b.features[j] + '</li>';
-
+    if (b.features) {
+      for (var j = 0; j < b.features.length; j++) fl += '<li>' + b.features[j] + '</li>';
+    }
     var imgHtml = b.image
       ? '<img class="bot-img" src="' + b.image + '" alt="' + b.name + '">'
       : '<div class="bot-img-placeholder">⚡</div>';
-
-    var badges = '<span class="file-badge badge-ex5">⚡ .ex5 Bot</span>';
+    var badges = '<span class="file-badge badge-ex5">⚡ .ex5 Protected</span>';
     if (b.indicators && b.indicators.length) {
       badges += '<span class="file-badge badge-ind">📊 ' + b.indicators.length + ' Indicator(s)</span>';
     }
-
     h += '<div class="bot-card">' +
       imgHtml +
       '<div class="bot-body">' +
@@ -365,37 +365,26 @@ var sd = JSON.parse(localStorage.getItem('storeData')) || { bots: [], orders: []
         '<ul class="feat-list">' + fl + '</ul>' +
         '<div class="price-row"><div><div class="price">$' + b.price + '</div><div class="price-sub">Lifetime license</div></div>' +
         '<div style="font-size:10px;color:var(--muted);font-family:JetBrains Mono,monospace;text-align:right">PROTECTED<br>.ex5</div></div>' +
-        '<button class="btn-buy" onclick="openModal(' + b.id + ')">Buy Now — $' + b.price + '</button>' +
+        '<button class="btn-buy" onclick="openModal(\'' + b._id + '\')">Buy Now — $' + b.price + '</button>' +
       '</div>' +
     '</div>';
   }
   g.innerHTML = h;
-})();
-
-var curBot    = null;
-var paymentId = null;
-var pollTimer = null;
-var cntTimer  = null;
-var curEmail  = '';
-var curName   = '';
+}
 
 function openModal(botId) {
-  for (var i = 0; i < sd.bots.length; i++) {
-    if (sd.bots[i].id === botId) { curBot = sd.bots[i]; break; }
+  for (var i = 0; i < allBots.length; i++) {
+    if (allBots[i]._id === botId) { curBot = allBots[i]; break; }
   }
   document.getElementById('mName').textContent  = curBot.name;
   document.getElementById('mPrice').textContent = '$' + curBot.price;
   document.getElementById('inEmail').value = '';
   document.getElementById('inName').value  = '';
-  document.getElementById('dEmail').textContent = '';
-
-  // Show included files
   var mf = '<span class="file-badge badge-ex5">⚡ .ex5 Bot included</span>';
   if (curBot.indicators && curBot.indicators.length) {
     mf += '<span class="file-badge badge-ind">📊 ' + curBot.indicators.length + ' Indicator(s) included</span>';
   }
   document.getElementById('mFiles').innerHTML = mf;
-
   paymentId = null;
   showStep('s1');
   document.getElementById('overlay').classList.add('on');
@@ -420,7 +409,7 @@ function createPayment() {
     body: JSON.stringify({
       price_amount: curBot.price, price_currency: 'usd',
       pay_currency: 'usdttrc20',
-      order_id: 'TM1-' + curBot.id + '-' + Date.now(),
+      order_id: 'TM1-' + curBot._id + '-' + Date.now(),
       order_description: curBot.name + ' — Trade Master No.1'
     })
   })
@@ -435,6 +424,12 @@ function createPayment() {
       showStep('s3');
       startPolling(data.payment_id);
       startTimer(20 * 60);
+      // Save order
+      fetch(SERVER + '/api/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ botId: curBot._id, botName: curBot.name, amount: curBot.price, method: 'USDT TRC20', email: curEmail, name: curName, status: 'pending' })
+      });
       tgNotify('🆕 New Order\n\n🤖 ' + curBot.name + '\n💰 $' + curBot.price + '\n👤 ' + curName + '\n📧 ' + curEmail);
     } else {
       alert('Error: ' + (data.message || 'Could not create payment. Please try again.'));
@@ -458,12 +453,7 @@ function checkStatus(pid) {
     if (s === 'finished' || s === 'confirmed') {
       stopAll();
       tgNotify('✅ Payment Confirmed!\n\n🤖 ' + curBot.name + '\n💰 $' + curBot.price + '\n👤 ' + curName + '\n📧 ' + curEmail);
-      // Save order
-      sd.orders = sd.orders || [];
-      sd.orders.push({ botName: curBot.name, botId: curBot.id, amount: curBot.price, method: 'USDT TRC20', email: curEmail, name: curName, status: 'confirmed', date: new Date().toISOString() });
-      localStorage.setItem('storeData', JSON.stringify(sd));
-      // Show download buttons
-      setupDownloads();
+      setupDownloadButtons();
       showStep('s4');
     } else if (s === 'confirming' || s === 'sending') {
       document.getElementById('statusBar').className = 'status-bar sc';
@@ -476,40 +466,40 @@ function checkStatus(pid) {
   .catch(function(){});
 }
 
-function setupDownloads() {
-  // Main bot file
-  if (!curBot.botFile) {
-    document.getElementById('dlMain').innerHTML = '<i class="fa fa-envelope"></i> File will be sent to your email';
-    document.getElementById('dlMain').style.background = '#3498DB';
-  }
-
-  // Indicator files
-  var indHtml = '';
+function setupDownloadButtons() {
+  var html = '<button class="btn-dl" onclick="downloadFile()">' +
+    '<i class="fa fa-download"></i> Download Bot (.ex5)' +
+  '</button>';
   if (curBot.indicators && curBot.indicators.length) {
     for (var i = 0; i < curBot.indicators.length; i++) {
-      indHtml += '<button class="btn-dl" style="background:#2ECC71;margin-top:8px;" onclick="doDownloadInd(' + i + ')">' +
+      html += '<button class="btn-dl" style="margin-top:8px" onclick="downloadIndicator(' + i + ')">' +
         '<i class="fa fa-download"></i> Download Indicator: ' + curBot.indicators[i].name +
       '</button>';
     }
   }
-  document.getElementById('dlIndicators').innerHTML = indHtml;
+  document.getElementById('dlButtons').innerHTML = html;
 }
 
-function doDownload(type) {
-  if (!curBot.botFile) return;
-  var a = document.createElement('a');
-  a.href = curBot.botFile.data;
-  a.download = curBot.botFile.name;
-  a.click();
+function downloadFile() {
+  fetch(SERVER + '/api/bots/' + curBot._id + '/download')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.file) {
+        var a = document.createElement('a');
+        a.href = data.file.data; a.download = data.file.name; a.click();
+      }
+    });
 }
 
-function doDownloadInd(index) {
-  var ind = curBot.indicators[index];
-  if (!ind) return;
-  var a = document.createElement('a');
-  a.href = ind.data;
-  a.download = ind.name;
-  a.click();
+function downloadIndicator(index) {
+  fetch(SERVER + '/api/bots/' + curBot._id + '/indicator/' + index)
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.file) {
+        var a = document.createElement('a');
+        a.href = data.file.data; a.download = data.file.name; a.click();
+      }
+    });
 }
 
 function startTimer(secs) {
