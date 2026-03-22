@@ -83,7 +83,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(11,14,17,0.95);backdrop-fi
 .step{display:none}.step.on{display:block}
 .field{margin-bottom:14px}
 .field label{display:block;font-size:11px;font-weight:700;color:var(–muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:7px;font-family:‘JetBrains Mono’,monospace}
-.field input{width:100%;background:rgba(255,255,255,0.05);border:1px solid var(–border);border-radius:8px;padding:12px 14px;color:var(–text);font-family:‘DM Sans’,sans-serif;font-size:14px;outline:none;transition:border-color 0.2s}
+.field input{width:100%;background:rgba(255,255,255,0.05);border:1px solid var(–border);border-radius:8px;padding:12px 14px;color:#E6EDF4 !important;font-family:‘DM Sans’,sans-serif;font-size:14px;outline:none;transition:border-color 0.2s}
 .field input:focus{border-color:var(–gold)}
 .field input::placeholder{color:var(–muted)}
 .pay-box{background:rgba(255,255,255,0.03);border:1px solid var(–border);border-radius:10px;padding:20px;margin-bottom:16px;text-align:center}
@@ -130,6 +130,22 @@ footer{position:relative;z-index:1;border-top:1px solid var(–border);padding:3
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:var(–dark)}
 ::-webkit-scrollbar-thumb{background:rgba(240,185,11,0.3);border-radius:3px}
+
+input, textarea, select {
+color: #E6EDF4 !important;
+background-color: rgba(255,255,255,0.05) !important;
+-webkit-text-fill-color: #E6EDF4 !important;
+}
+input::placeholder, textarea::placeholder {
+color: #6B7785 !important;
+-webkit-text-fill-color: #6B7785 !important;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+-webkit-text-fill-color: #E6EDF4 !important;
+-webkit-box-shadow: 0 0 0px 1000px #13171D inset !important;
+}
 </style>
 
 </head>
