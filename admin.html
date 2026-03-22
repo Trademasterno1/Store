@@ -10,625 +10,544 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{--gold:#F0B90B;--dark:#0B0E11;--panel:#13171D;--panel2:#1A1F28;--border:rgba(240,185,11,0.2);--text:#E6EDF4;--muted:#6B7785}
-body{font-family:'DM Sans',sans-serif;background:var(--dark);color:var(--text);}
+body{font-family:'DM Sans',sans-serif;background:var(--dark);color:var(--text)}
 
-/* LOGIN */
-#loginScreen{position:fixed;inset:0;background:var(–dark);z-index:9999;display:flex;align-items:center;justify-content:center;}
-#loginScreen::before{content:’’;position:fixed;inset:0;background-image:linear-gradient(rgba(240,185,11,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(240,185,11,0.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;}
-.login-box{background:var(–panel);border:1px solid var(–border);border-radius:16px;padding:48px 40px;width:100%;max-width:380px;position:relative;z-index:1;text-align:center;}
-.login-title{font-family:‘Bebas Neue’,sans-serif;font-size:30px;margin-bottom:6px;}
-.login-sub{font-size:12px;color:var(–muted);margin-bottom:28px;font-family:‘JetBrains Mono’,monospace;}
-.login-wrap{position:relative;margin-bottom:14px;}
-.login-input{width:100%;background:rgba(255,255,255,0.05);border:1px solid var(–border);border-radius:10px;padding:13px 44px 13px 16px;color:var(–text);font-family:‘DM Sans’,sans-serif;font-size:15px;outline:none;transition:border-color 0.2s;letter-spacing:2px;}
-.login-input:focus{border-color:var(–gold);}
-.login-input::placeholder{letter-spacing:0;color:var(–muted);}
-.eye-btn{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(–muted);cursor:pointer;font-size:15px;}
-.login-btn{width:100%;background:var(–gold);color:var(–dark);font-family:‘DM Sans’,sans-serif;font-weight:700;font-size:15px;padding:14px;border:none;border-radius:10px;cursor:pointer;margin-top:8px;}
-.login-btn:hover{background:#FFD02A;}
-.login-error{background:rgba(231,76,60,0.12);border:1px solid rgba(231,76,60,0.4);color:#E74C3C;font-size:13px;padding:10px;border-radius:8px;margin-bottom:14px;display:none;}
-.login-error.show{display:block;}
-.login-attempts{font-size:12px;color:var(–muted);margin-top:12px;font-family:‘JetBrains Mono’,monospace;}
+#loginScreen{position:fixed;inset:0;background:var(–dark);z-index:9999;display:flex;align-items:center;justify-content:center}
+#loginScreen::before{content:’’;position:fixed;inset:0;background-image:linear-gradient(rgba(240,185,11,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(240,185,11,0.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.login-box{background:var(–panel);border:1px solid var(–border);border-radius:16px;padding:48px 40px;width:100%;max-width:380px;position:relative;z-index:1;text-align:center}
+.login-title{font-family:‘Bebas Neue’,sans-serif;font-size:30px;margin-bottom:6px}
+.login-sub{font-size:12px;color:var(–muted);margin-bottom:28px;font-family:‘JetBrains Mono’,monospace}
+.login-wrap{position:relative;margin-bottom:14px}
+.login-input{width:100%;background:rgba(255,255,255,0.05);border:1px solid var(–border);border-radius:10px;padding:13px 44px 13px 16px;color:var(–text);font-family:‘DM Sans’,sans-serif;font-size:15px;outline:none;transition:border-color 0.2s;letter-spacing:2px}
+.login-input:focus{border-color:var(–gold)}
+.login-input::placeholder{letter-spacing:0;color:var(–muted)}
+.eye-btn{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(–muted);cursor:pointer;font-size:15px}
+.login-btn{width:100%;background:var(–gold);color:var(–dark);font-family:‘DM Sans’,sans-serif;font-weight:700;font-size:15px;padding:14px;border:none;border-radius:10px;cursor:pointer;margin-top:8px}
+.login-btn:hover{background:#FFD02A}
+.login-error{background:rgba(231,76,60,0.12);border:1px solid rgba(231,76,60,0.4);color:#E74C3C;font-size:13px;padding:10px;border-radius:8px;margin-bottom:14px;display:none}
+.login-error.show{display:block}
+.login-attempts{font-size:12px;color:var(–muted);margin-top:12px;font-family:‘JetBrains Mono’,monospace}
 @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-5px)}80%{transform:translateX(5px)}}
-.shake{animation:shake 0.4s ease;}
+.shake{animation:shake 0.4s ease}
 
-/* LAYOUT */
-#adminApp{display:none;height:100vh;overflow:hidden;}
-#adminApp.show{display:flex;}
-.sidebar{width:240px;background:var(–panel);border-right:1px solid var(–border);display:flex;flex-direction:column;flex-shrink:0;}
-.sidebar-brand{padding:24px 20px;border-bottom:1px solid var(–border);}
-.brand-text{font-family:‘Bebas Neue’,sans-serif;font-size:20px;}
-.brand-text span{color:var(–gold);}
-.brand-sub{font-size:11px;color:var(–muted);font-family:‘JetBrains Mono’,monospace;margin-top:4px;}
-.nav-items{padding:16px 0;flex:1;}
-.nav-item{display:flex;align-items:center;gap:12px;padding:12px 20px;cursor:pointer;font-size:14px;font-weight:500;color:var(–muted);border-right:3px solid transparent;transition:all 0.2s;}
-.nav-item:hover{background:rgba(240,185,11,0.05);color:var(–text);}
-.nav-item.active{background:rgba(240,185,11,0.08);border-right-color:var(–gold);color:var(–gold);}
-.nav-item i{width:16px;text-align:center;}
-.sidebar-footer{padding:16px 20px;border-top:1px solid var(–border);}
-.store-btn{display:flex;align-items:center;gap:8px;width:100%;padding:10px 14px;background:rgba(240,185,11,0.1);border:1px solid var(–border);border-radius:8px;color:var(–gold);font-size:13px;font-weight:600;cursor:pointer;font-family:‘DM Sans’,sans-serif;}
-.store-btn:hover{background:rgba(240,185,11,0.18);}
-.main{flex:1;overflow-y:auto;}
-.page{display:none;padding:36px 40px;}
-.page.active{display:block;}
-.page-title{font-family:‘Bebas Neue’,sans-serif;font-size:40px;margin-bottom:32px;}
+#adminApp{display:none;height:100vh;overflow:hidden}
+#adminApp.show{display:flex}
+.sidebar{width:240px;background:var(–panel);border-right:1px solid var(–border);display:flex;flex-direction:column;flex-shrink:0}
+.sidebar-brand{padding:24px 20px;border-bottom:1px solid var(–border)}
+.brand-text{font-family:‘Bebas Neue’,sans-serif;font-size:20px}
+.brand-text span{color:var(–gold)}
+.brand-sub{font-size:11px;color:var(–muted);font-family:‘JetBrains Mono’,monospace;margin-top:4px}
+.nav-items{padding:16px 0;flex:1}
+.nav-item{display:flex;align-items:center;gap:12px;padding:12px 20px;cursor:pointer;font-size:14px;font-weight:500;color:var(–muted);border-right:3px solid transparent;transition:all 0.2s}
+.nav-item:hover{background:rgba(240,185,11,0.05);color:var(–text)}
+.nav-item.active{background:rgba(240,185,11,0.08);border-right-color:var(–gold);color:var(–gold)}
+.nav-item i{width:16px;text-align:center}
+.sidebar-footer{padding:16px 20px;border-top:1px solid var(–border)}
+.store-btn{display:flex;align-items:center;gap:8px;width:100%;padding:10px 14px;background:rgba(240,185,11,0.1);border:1px solid var(–border);border-radius:8px;color:var(–gold);font-size:13px;font-weight:600;cursor:pointer;font-family:‘DM Sans’,sans-serif}
+.store-btn:hover{background:rgba(240,185,11,0.18)}
+.main{flex:1;overflow-y:auto}
+.page{display:none;padding:36px 40px}
+.page.active{display:block}
+.page-title{font-family:‘Bebas Neue’,sans-serif;font-size:40px;margin-bottom:32px}
 
-/* STATS */
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px;}
-.stat-card{background:var(–panel);border:1px solid var(–border);border-radius:10px;padding:20px;}
-.stat-label{font-size:11px;color:var(–muted);text-transform:uppercase;letter-spacing:1px;font-family:‘JetBrains Mono’,monospace;margin-bottom:10px;}
-.stat-val{font-family:‘Bebas Neue’,sans-serif;font-size:36px;line-height:1;}
-.gold-c{color:var(–gold);}.green-c{color:#2ECC71;}.blue-c{color:#3498DB;}.orange-c{color:#E67E22;}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px}
+.stat-card{background:var(–panel);border:1px solid var(–border);border-radius:10px;padding:20px}
+.stat-label{font-size:11px;color:var(–muted);text-transform:uppercase;letter-spacing:1px;font-family:‘JetBrains Mono’,monospace;margin-bottom:10px}
+.stat-val{font-family:‘Bebas Neue’,sans-serif;font-size:36px;line-height:1}
+.gold-c{color:var(–gold)}.green-c{color:#2ECC71}.blue-c{color:#3498DB}.orange-c{color:#E67E22}
 
-/* CARD */
-.card{background:var(–panel);border:1px solid var(–border);border-radius:12px;padding:28px;margin-bottom:24px;}
-.card-title{font-family:‘Bebas Neue’,sans-serif;font-size:22px;margin-bottom:20px;}
+.card{background:var(–panel);border:1px solid var(–border);border-radius:12px;padding:28px;margin-bottom:24px}
+.card-title{font-family:‘Bebas Neue’,sans-serif;font-size:22px;margin-bottom:20px}
 
-/* FORM */
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-.form-full{grid-column:1/-1;}
-.field{margin-bottom:0;}
-.field label{display:block;font-size:11px;font-weight:700;color:var(–muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;font-family:‘JetBrains Mono’,monospace;}
-.field input,.field textarea,.field select{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(–border);border-radius:8px;padding:12px 16px;color:var(–text);font-family:‘DM Sans’,sans-serif;font-size:14px;outline:none;transition:border-color 0.2s;}
-.field input:focus,.field textarea:focus{border-color:var(–gold);}
-.field input::placeholder,.field textarea::placeholder{color:var(–muted);}
-.field select option{background:var(–panel);}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.form-full{grid-column:1/-1}
+.field label{display:block;font-size:11px;font-weight:700;color:var(–muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;font-family:‘JetBrains Mono’,monospace}
+.field input,.field textarea{width:100%;background:rgba(255,255,255,0.04);border:1px solid var(–border);border-radius:8px;padding:12px 16px;color:var(–text);font-family:‘DM Sans’,sans-serif;font-size:14px;outline:none;transition:border-color 0.2s}
+.field input:focus,.field textarea:focus{border-color:var(–gold)}
+.field input::placeholder,.field textarea::placeholder{color:var(–muted)}
 
-/* UPLOAD ZONES */
-.upload-zone{border:2px dashed rgba(240,185,11,0.25);border-radius:10px;padding:28px;text-align:center;cursor:pointer;transition:all 0.3s;background:rgba(240,185,11,0.02);}
-.upload-zone:hover,.upload-zone.dragover{border-color:var(–gold);background:rgba(240,185,11,0.06);}
-.upload-zone i{font-size:28px;color:var(–gold);margin-bottom:10px;display:block;}
-.upload-zone p{font-size:13px;color:var(–muted);}
-.upload-zone p strong{color:var(–text);}
-.file-label{font-size:12px;color:var(–gold);margin-top:8px;font-family:‘JetBrains Mono’,monospace;display:block;}
+.upload-zone{border:2px dashed rgba(240,185,11,0.25);border-radius:10px;padding:28px;text-align:center;cursor:pointer;transition:all 0.3s;background:rgba(240,185,11,0.02)}
+.upload-zone:hover{border-color:var(–gold);background:rgba(240,185,11,0.06)}
+.upload-zone i{font-size:28px;color:var(–gold);margin-bottom:10px;display:block}
+.upload-zone p{font-size:13px;color:var(–muted)}
+.file-label{font-size:12px;color:var(–gold);margin-top:8px;font-family:‘JetBrains Mono’,monospace;display:block}
+.img-preview{width:100%;height:180px;object-fit:cover;border-radius:8px;margin-top:12px;border:1px solid var(–border);display:none}
 
-/* Image preview */
-.img-preview{width:100%;height:180px;object-fit:cover;border-radius:8px;margin-top:12px;border:1px solid var(–border);display:none;}
+.bot-row{background:var(–panel2);border:1px solid var(–border);border-radius:10px;padding:20px;margin-bottom:14px;display:flex;align-items:center;gap:16px}
+.bot-row-img{width:70px;height:70px;border-radius:8px;border:1px solid var(–border);flex-shrink:0;background:rgba(240,185,11,0.05);display:flex;align-items:center;justify-content:center;font-size:24px;overflow:hidden}
+.bot-row-img img{width:70px;height:70px;object-fit:cover}
+.bot-row-info{flex:1}
+.bot-row-name{font-weight:700;font-size:15px;margin-bottom:3px}
+.bot-row-desc{font-size:12px;color:var(–muted);margin-bottom:6px}
+.bot-row-files{display:flex;gap:6px;flex-wrap:wrap}
+.file-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;font-family:‘JetBrains Mono’,monospace}
+.badge-ex5{background:rgba(240,185,11,0.12);color:var(–gold);border:1px solid rgba(240,185,11,0.3)}
+.badge-img{background:rgba(52,152,219,0.12);color:#4FC3F7;border:1px solid rgba(52,152,219,0.3)}
+.badge-ind{background:rgba(46,204,113,0.12);color:#2ECC71;border:1px solid rgba(46,204,113,0.3)}
+.bot-row-price{font-family:‘Bebas Neue’,sans-serif;font-size:24px;color:var(–gold);flex-shrink:0}
+.bot-row-actions{display:flex;gap:8px;flex-shrink:0}
 
-/* Indicators list */
-.indicator-item{background:var(–panel2);border:1px solid var(–border);border-radius:8px;padding:12px 16px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
-.indicator-name{font-family:‘JetBrains Mono’,monospace;font-size:13px;color:var(–gold);}
-.indicator-size{font-size:11px;color:var(–muted);}
+.orders-wrap{overflow-x:auto}
+.orders-table{width:100%;border-collapse:collapse;font-size:13px}
+.orders-table th{background:rgba(240,185,11,0.07);padding:12px 14px;text-align:left;border-bottom:1px solid var(–border);font-size:11px;letter-spacing:1px;text-transform:uppercase;font-family:‘JetBrains Mono’,monospace;color:var(–muted);white-space:nowrap}
+.orders-table td{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:middle}
+.status-badge{display:inline-block;padding:3px 10px;border-radius:4px;font-size:11px;font-weight:700;font-family:‘JetBrains Mono’,monospace}
+.status-pending{background:rgba(230,126,34,0.15);color:#E67E22;border:1px solid rgba(230,126,34,0.3)}
+.status-confirmed{background:rgba(46,204,113,0.15);color:#2ECC71;border:1px solid rgba(46,204,113,0.3)}
 
-/* BOT LIST */
-.bot-row{background:var(–panel2);border:1px solid var(–border);border-radius:10px;padding:20px;margin-bottom:14px;display:flex;align-items:center;gap:16px;}
-.bot-row-img{width:70px;height:70px;object-fit:cover;border-radius:8px;border:1px solid var(–border);flex-shrink:0;background:rgba(240,185,11,0.05);display:flex;align-items:center;justify-content:center;font-size:24px;}
-.bot-row-img img{width:70px;height:70px;object-fit:cover;border-radius:8px;}
-.bot-row-info{flex:1;}
-.bot-row-name{font-weight:700;font-size:15px;margin-bottom:3px;}
-.bot-row-desc{font-size:12px;color:var(–muted);margin-bottom:6px;}
-.bot-row-files{display:flex;gap:6px;flex-wrap:wrap;}
-.file-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;font-family:‘JetBrains Mono’,monospace;}
-.badge-ex5{background:rgba(240,185,11,0.15);color:var(–gold);border:1px solid rgba(240,185,11,0.3);}
-.badge-img{background:rgba(52,152,219,0.15);color:#4FC3F7;border:1px solid rgba(52,152,219,0.3);}
-.badge-ind{background:rgba(46,204,113,0.15);color:#2ECC71;border:1px solid rgba(46,204,113,0.3);}
-.bot-row-price{font-family:‘Bebas Neue’,sans-serif;font-size:24px;color:var(–gold);flex-shrink:0;}
-.bot-row-actions{display:flex;gap:8px;flex-shrink:0;}
+.btn{padding:11px 22px;border:none;border-radius:8px;font-family:‘DM Sans’,sans-serif;font-weight:700;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all 0.2s}
+.btn-gold{background:var(–gold);color:var(–dark)}
+.btn-gold:hover{background:#FFD02A}
+.btn-danger{background:#E74C3C;color:white}
+.btn-danger:hover{background:#C0392B}
+.btn-ghost{background:rgba(255,255,255,0.05);border:1px solid var(–border);color:var(–muted)}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.2);color:var(–text)}
+.btn-sm{padding:7px 14px;font-size:12px}
 
-/* BUTTONS */
-.btn{padding:11px 22px;border:none;border-radius:8px;font-family:‘DM Sans’,sans-serif;font-weight:700;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all 0.2s;}
-.btn-gold{background:var(–gold);color:var(–dark);}
-.btn-gold:hover{background:#FFD02A;}
-.btn-danger{background:#E74C3C;color:white;}
-.btn-danger:hover{background:#C0392B;}
-.btn-ghost{background:rgba(255,255,255,0.05);border:1px solid var(–border);color:var(–muted);}
-.btn-ghost:hover{border-color:rgba(255,255,255,0.2);color:var(–text);}
-.btn-sm{padding:7px 14px;font-size:12px;}
+.alert{padding:13px 16px;border-radius:8px;font-size:14px;margin-bottom:18px;display:none;align-items:center;gap:10px}
+.alert.show{display:flex}
+.alert-success{background:rgba(46,204,113,0.1);border:1px solid #2ECC71;color:#2ECC71}
+.alert-error{background:rgba(231,76,60,0.1);border:1px solid #E74C3C;color:#E74C3C}
 
-/* ORDERS */
-.orders-wrap{overflow-x:auto;}
-.orders-table{width:100%;border-collapse:collapse;font-size:13px;}
-.orders-table th{background:rgba(240,185,11,0.07);padding:12px 14px;text-align:left;border-bottom:1px solid var(–border);font-size:11px;letter-spacing:1px;text-transform:uppercase;font-family:‘JetBrains Mono’,monospace;color:var(–muted);white-space:nowrap;}
-.orders-table td{padding:12px 14px;border-bottom:1px solid rgba(255,255,255,0.04);vertical-align:middle;}
-.orders-table tr:hover td{background:rgba(255,255,255,0.02);}
-.status-badge{display:inline-block;padding:3px 10px;border-radius:4px;font-size:11px;font-weight:700;font-family:‘JetBrains Mono’,monospace;}
-.status-pending{background:rgba(230,126,34,0.15);color:#E67E22;border:1px solid rgba(230,126,34,0.3);}
-.status-confirmed{background:rgba(46,204,113,0.15);color:#2ECC71;border:1px solid rgba(46,204,113,0.3);}
-
-/* ALERT */
-.alert{padding:13px 16px;border-radius:8px;font-size:14px;margin-bottom:18px;display:none;align-items:center;gap:10px;}
-.alert.show{display:flex;}
-.alert-success{background:rgba(46,204,113,0.1);border:1px solid #2ECC71;color:#2ECC71;}
-.alert-error{background:rgba(231,76,60,0.1);border:1px solid #E74C3C;color:#E74C3C;}
+.loading{text-align:center;padding:30px;color:var(–muted);font-size:14px}
 
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:var(–dark)}
 ::-webkit-scrollbar-thumb{background:rgba(240,185,11,0.3);border-radius:3px}
-.main::-webkit-scrollbar{width:5px}
 </style>
 
 </head>
 <body>
 
-<!-- LOGIN -->
-
 <div id="loginScreen">
-    <div class="login-box" id="loginBox">
-        <div style="font-size:36px;margin-bottom:16px;">🔐</div>
-        <div class="login-title">Admin Access</div>
-        <div class="login-sub">// TRADE MASTER NO.1</div>
-        <div class="login-error" id="loginError"></div>
-        <div class="login-wrap">
-            <input class="login-input" type="password" id="pwInput" placeholder="Enter password" onkeydown="if(event.key==='Enter')tryLogin()" autocomplete="current-password"/>
-            <button class="eye-btn" onclick="togglePw()"><i class="fas fa-eye" id="eyeIcon"></i></button>
-        </div>
-        <button class="login-btn" onclick="tryLogin()"><i class="fas fa-unlock" style="margin-right:8px;"></i>Unlock Panel</button>
-        <div class="login-attempts" id="attemptsNote"></div>
+  <div class="login-box" id="loginBox">
+    <div style="font-size:36px;margin-bottom:16px">🔐</div>
+    <div class="login-title">Admin Access</div>
+    <div class="login-sub">// TRADE MASTER NO.1</div>
+    <div class="login-error" id="loginError"></div>
+    <div class="login-wrap">
+      <input class="login-input" type="password" id="pwInput" placeholder="Enter password" onkeydown="if(event.key==='Enter')tryLogin()" autocomplete="current-password">
+      <button class="eye-btn" onclick="togglePw()"><i class="fas fa-eye" id="eyeIcon"></i></button>
     </div>
+    <button class="login-btn" onclick="tryLogin()"><i class="fas fa-unlock" style="margin-right:8px"></i>Unlock Panel</button>
+    <div class="login-attempts" id="attemptsNote"></div>
+  </div>
 </div>
 
-<!-- ADMIN APP -->
-
 <div id="adminApp">
-    <aside class="sidebar">
-        <div class="sidebar-brand">
-            <div class="brand-text">Trade Master <span>No.1</span></div>
-            <div class="brand-sub">// ADMIN PANEL</div>
-        </div>
-        <div class="nav-items">
-            <div class="nav-item active" onclick="goPage('dashboard',this)"><i class="fas fa-chart-line"></i> Dashboard</div>
-            <div class="nav-item" onclick="goPage('orders',this)"><i class="fas fa-inbox"></i> Orders <span id="pendingBadge" style="margin-left:auto;background:#E67E22;color:white;font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;display:none;"></span></div>
-            <div class="nav-item" onclick="goPage('bots',this)"><i class="fas fa-robot"></i> Manage Bots</div>
-            <div class="nav-item" onclick="goPage('settings',this)"><i class="fas fa-cog"></i> Settings</div>
-        </div>
-        <div class="sidebar-footer">
-            <button class="store-btn" onclick="window.location.href='index.html'"><i class="fas fa-store"></i> View Store</button>
-        </div>
-    </aside>
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-text">Trade Master <span>No.1</span></div>
+      <div class="brand-sub">// ADMIN PANEL</div>
+    </div>
+    <div class="nav-items">
+      <div class="nav-item active" onclick="goPage('dashboard',this)"><i class="fas fa-chart-line"></i> Dashboard</div>
+      <div class="nav-item" onclick="goPage('orders',this)"><i class="fas fa-inbox"></i> Orders <span id="pendingBadge" style="margin-left:auto;background:#E67E22;color:white;font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;display:none"></span></div>
+      <div class="nav-item" onclick="goPage('bots',this)"><i class="fas fa-robot"></i> Manage Bots</div>
+    </div>
+    <div class="sidebar-footer">
+      <button class="store-btn" onclick="window.location.href='index.html'"><i class="fas fa-store"></i> View Store</button>
+    </div>
+  </aside>
+
+  <main class="main">
 
 ```
-<main class="main">
+<!-- DASHBOARD -->
+<div class="page active" id="page-dashboard">
+  <div class="page-title">Dashboard</div>
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-label">Total Bots</div><div class="stat-val gold-c" id="sBots">0</div></div>
+    <div class="stat-card"><div class="stat-label">Total Orders</div><div class="stat-val blue-c" id="sOrders">0</div></div>
+    <div class="stat-card"><div class="stat-label">Pending</div><div class="stat-val orange-c" id="sPending">0</div></div>
+    <div class="stat-card"><div class="stat-label">Confirmed</div><div class="stat-val green-c" id="sConfirmed">0</div></div>
+  </div>
+  <div class="card">
+    <div class="card-title">Recent Orders</div>
+    <div id="dashOrders"><p style="color:var(--muted);font-size:14px">No orders yet.</p></div>
+  </div>
+</div>
 
-    <!-- DASHBOARD -->
-    <div class="page active" id="page-dashboard">
-        <div class="page-title">Dashboard</div>
-        <div class="stats-grid">
-            <div class="stat-card"><div class="stat-label">Total Bots</div><div class="stat-val gold-c" id="sBots">0</div></div>
-            <div class="stat-card"><div class="stat-label">Total Orders</div><div class="stat-val blue-c" id="sOrders">0</div></div>
-            <div class="stat-card"><div class="stat-label">Pending</div><div class="stat-val orange-c" id="sPending">0</div></div>
-            <div class="stat-card"><div class="stat-label">Confirmed</div><div class="stat-val green-c" id="sConfirmed">0</div></div>
-        </div>
-        <div class="card">
-            <div class="card-title">Recent Orders</div>
-            <div id="dashOrders"><p style="color:var(--muted);font-size:14px;">No orders yet.</p></div>
-        </div>
+<!-- ORDERS -->
+<div class="page" id="page-orders">
+  <div class="page-title">Orders</div>
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
+      <div class="card-title" style="margin-bottom:0">All Orders</div>
+      <button class="btn btn-ghost btn-sm" onclick="loadOrders()"><i class="fas fa-sync"></i> Refresh</button>
     </div>
-
-    <!-- ORDERS -->
-    <div class="page" id="page-orders">
-        <div class="page-title">Orders</div>
-        <div class="alert alert-success" id="orderAlert"><i class="fas fa-check-circle"></i><span id="orderAlertTxt"></span></div>
-        <div class="card">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
-                <div class="card-title" style="margin-bottom:0;">All Orders</div>
-                <button class="btn btn-ghost btn-sm" onclick="loadOrders()"><i class="fas fa-sync"></i> Refresh</button>
-            </div>
-            <div class="orders-wrap">
-                <table class="orders-table">
-                    <thead><tr>
-                        <th>Date</th><th>Bot</th><th>Amount</th><th>Method</th><th>Email</th><th>Status</th>
-                    </tr></thead>
-                    <tbody id="ordersBody">
-                        <tr><td colspan="6" style="text-align:center;color:var(--muted);padding:32px;">No orders yet.</td></tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+    <div class="orders-wrap">
+      <table class="orders-table">
+        <thead><tr><th>Date</th><th>Bot</th><th>Amount</th><th>Method</th><th>Email</th><th>Status</th></tr></thead>
+        <tbody id="ordersBody"><tr><td colspan="6" style="text-align:center;color:var(--muted);padding:32px">No orders yet.</td></tr></tbody>
+      </table>
     </div>
+  </div>
+</div>
 
-    <!-- BOTS -->
-    <div class="page" id="page-bots">
-        <div class="page-title">Manage Bots</div>
-        <div class="alert alert-success" id="botAlert"><i class="fas fa-check-circle"></i><span id="botAlertTxt"></span></div>
-        <div class="alert alert-error" id="botErrAlert"><i class="fas fa-exclamation-circle"></i><span id="botErrTxt"></span></div>
+<!-- BOTS -->
+<div class="page" id="page-bots">
+  <div class="page-title">Manage Bots</div>
+  <div class="alert alert-success" id="botAlert"><i class="fas fa-check-circle"></i><span id="botAlertTxt"></span></div>
+  <div class="alert alert-error" id="botErrAlert"><i class="fas fa-exclamation-circle"></i><span id="botErrTxt"></span></div>
 
-        <div class="card">
-            <div class="card-title">Add New Bot</div>
-            <div class="form-grid">
+  <div class="card">
+    <div class="card-title">Add New Bot</div>
+    <div class="form-grid">
+      <div class="field"><label>Bot Name</label><input type="text" id="botName" placeholder="e.g. Gold Scalper Pro"></div>
+      <div class="field"><label>Price (USD)</label><input type="number" id="botPrice" placeholder="79" step="0.01" min="0"></div>
+      <div class="field form-full"><label>Description</label><textarea id="botDesc" placeholder="Describe the bot strategy..." rows="3" style="resize:vertical"></textarea></div>
+      <div class="field form-full"><label>Features (comma-separated)</label><textarea id="botFeatures" placeholder="ATR-based SL/TP, 4-phase trailing stop, Session filter" rows="2" style="resize:vertical"></textarea></div>
 
-                <div class="field">
-                    <label>Bot Name</label>
-                    <input type="text" id="botName" placeholder="e.g. Gold Scalper Pro v2">
-                </div>
-                <div class="field">
-                    <label>Price (USD)</label>
-                    <input type="number" id="botPrice" placeholder="79" step="0.01" min="0">
-                </div>
-
-                <div class="field form-full">
-                    <label>Description</label>
-                    <textarea id="botDesc" placeholder="Describe the bot strategy..." rows="3" style="resize:vertical;"></textarea>
-                </div>
-
-                <div class="field form-full">
-                    <label>Features (comma-separated)</label>
-                    <textarea id="botFeatures" placeholder="ATR-based SL/TP, 4-phase trailing stop, Session filter" rows="2" style="resize:vertical;"></textarea>
-                </div>
-
-                <!-- Bot Image -->
-                <div class="field form-full">
-                    <label>📸 Bot Image (screenshot / backtest results)</label>
-                    <div class="upload-zone" id="imgZone" onclick="document.getElementById('botImg').click()">
-                        <i class="fas fa-image"></i>
-                        <p><strong>Click to upload image</strong></p>
-                        <p>JPG, PNG, WebP — max 5MB</p>
-                        <input type="file" id="botImg" accept="image/*" style="display:none;" onchange="previewImg(this)">
-                    </div>
-                    <img id="imgPreview" class="img-preview" alt="Preview">
-                    <span class="file-label" id="imgLabel"></span>
-                </div>
-
-                <!-- Main Bot File -->
-                <div class="field form-full">
-                    <label>⚡ Main Bot File (.ex5) — compiled, no source code</label>
-                    <div class="upload-zone" id="ex5Zone" onclick="document.getElementById('botEx5').click()">
-                        <i class="fas fa-robot"></i>
-                        <p><strong>Click to upload .ex5 file</strong></p>
-                        <p>Compiled MT5 Expert Advisor</p>
-                        <input type="file" id="botEx5" accept=".ex5,.mq5" style="display:none;" onchange="updateLabel(this,'ex5Label')">
-                    </div>
-                    <span class="file-label" id="ex5Label"></span>
-                </div>
-
-                <!-- Indicators -->
-                <div class="field form-full">
-                    <label>📊 Indicators (.ex5) — optional, can add multiple</label>
-                    <div class="upload-zone" id="indZone" onclick="document.getElementById('botInds').click()">
-                        <i class="fas fa-chart-bar"></i>
-                        <p><strong>Click to upload indicator files</strong></p>
-                        <p>Multiple .ex5 files allowed</p>
-                        <input type="file" id="botInds" accept=".ex5,.mq5" multiple style="display:none;" onchange="updateIndicators(this)">
-                    </div>
-                    <div id="indsList" style="margin-top:10px;"></div>
-                </div>
-
-            </div>
-            <div style="margin-top:20px;">
-                <button class="btn btn-gold" onclick="addBot()"><i class="fas fa-plus"></i> Add Bot</button>
-            </div>
+      <div class="field form-full">
+        <label>📸 Bot Image</label>
+        <div class="upload-zone" onclick="document.getElementById('botImg').click()">
+          <i class="fas fa-image"></i>
+          <p><strong>Click to upload image</strong> — JPG, PNG, WebP</p>
+          <input type="file" id="botImg" accept="image/*" style="display:none" onchange="previewImg(this)">
         </div>
+        <img id="imgPreview" class="img-preview" alt="Preview">
+        <span class="file-label" id="imgLabel"></span>
+      </div>
 
-        <div class="card">
-            <div class="card-title">Active Bots</div>
-            <div id="botsList"><p style="color:var(--muted);font-size:14px;">No bots yet.</p></div>
+      <div class="field form-full">
+        <label>⚡ Bot File (.ex5) — no source code</label>
+        <div class="upload-zone" onclick="document.getElementById('botEx5').click()">
+          <i class="fas fa-robot"></i>
+          <p><strong>Click to upload .ex5 file</strong></p>
+          <input type="file" id="botEx5" accept=".ex5,.mq5" style="display:none" onchange="updateLabel(this,'ex5Label')">
         </div>
+        <span class="file-label" id="ex5Label"></span>
+      </div>
+
+      <div class="field form-full">
+        <label>📊 Indicators (.ex5) — optional, multiple allowed</label>
+        <div class="upload-zone" onclick="document.getElementById('botInds').click()">
+          <i class="fas fa-chart-bar"></i>
+          <p><strong>Click to upload indicators</strong> — multiple files allowed</p>
+          <input type="file" id="botInds" accept=".ex5,.mq5" multiple style="display:none" onchange="updateIndicators(this)">
+        </div>
+        <div id="indsList" style="margin-top:10px"></div>
+      </div>
     </div>
-
-    <!-- SETTINGS -->
-    <div class="page" id="page-settings">
-        <div class="page-title">Settings</div>
-        <div class="card">
-            <div class="card-title">Store Settings</div>
-            <div class="form-grid">
-                <div class="field"><label>Store Name</label><input type="text" id="storeName" placeholder="Trade Master No.1"></div>
-                <div class="field"><label>Support Email</label><input type="email" id="supportEmail" placeholder="support@example.com"></div>
-            </div>
-            <div style="margin-top:18px;"><button class="btn btn-gold" onclick="saveSettings()"><i class="fas fa-save"></i> Save</button></div>
-        </div>
-        <div class="card">
-            <div class="card-title">Data Management</div>
-            <div style="display:flex;gap:12px;flex-wrap:wrap;">
-                <button class="btn btn-ghost" onclick="exportData()"><i class="fas fa-download"></i> Export Backup</button>
-                <button class="btn btn-danger" onclick="clearData()"><i class="fas fa-trash"></i> Clear All Data</button>
-            </div>
-        </div>
+    <div style="margin-top:20px">
+      <button class="btn btn-gold" onclick="addBot()" id="addBotBtn"><i class="fas fa-plus"></i> Add Bot</button>
     </div>
+  </div>
 
-</main>
+  <div class="card">
+    <div class="card-title">Active Bots</div>
+    <div id="botsList"><div class="loading">Loading bots...</div></div>
+  </div>
+</div>
 ```
 
+  </main>
 </div>
 
 <script>
-// ── PASSWORD ────────────────────────────────────────
-const SESSION_KEY = 'tm_auth';
-const MAX_ATT = 5;
-const LOCK_MS = 15 * 60 * 1000;
-let attempts  = parseInt(sessionStorage.getItem('tm_att') || '0');
-let lockUntil = parseInt(sessionStorage.getItem('tm_lock') || '0');
+var SERVER = 'https://store-his6.onrender.com';
 
-window.addEventListener('DOMContentLoaded', () => {
-    if (sessionStorage.getItem(SESSION_KEY) === 'ok') unlockApp();
-    else checkLock();
+// ── PASSWORD ────────────────────────────────────────
+var SESSION_KEY = 'tm_auth';
+var MAX_ATT = 5;
+var LOCK_MS = 15 * 60 * 1000;
+var attempts  = parseInt(sessionStorage.getItem('tm_att') || '0');
+var lockUntil = parseInt(sessionStorage.getItem('tm_lock') || '0');
+
+window.addEventListener('DOMContentLoaded', function() {
+  if (sessionStorage.getItem(SESSION_KEY) === 'ok') unlockApp();
+  else checkLock();
 });
 
 function checkLock() {
-    if (lockUntil > Date.now()) {
-        const mins = Math.ceil((lockUntil - Date.now()) / 60000);
-        document.getElementById('attemptsNote').textContent = 'Locked for ' + mins + ' min';
-        document.getElementById('attemptsNote').style.color = '#E74C3C';
-        document.getElementById('pwInput').disabled = true;
-        document.querySelector('.login-btn').disabled = true;
-        setTimeout(checkLock, 15000);
-    } else if (attempts > 0) {
-        document.getElementById('attemptsNote').textContent = (MAX_ATT - attempts) + ' attempt(s) remaining';
-    }
+  if (lockUntil > Date.now()) {
+    var mins = Math.ceil((lockUntil - Date.now()) / 60000);
+    document.getElementById('attemptsNote').textContent = 'Locked for ' + mins + ' min';
+    document.getElementById('attemptsNote').style.color = '#E74C3C';
+    document.getElementById('pwInput').disabled = true;
+    document.querySelector('.login-btn').disabled = true;
+    setTimeout(checkLock, 15000);
+  } else if (attempts > 0) {
+    document.getElementById('attemptsNote').textContent = (MAX_ATT - attempts) + ' attempt(s) remaining';
+  }
 }
 
-async function tryLogin() {
-    if (lockUntil > Date.now()) { checkLock(); return; }
-    const pw = document.getElementById('pwInput').value;
-    if (!pw) return;
-    const hash    = await sha256(pw);
-    const correct = await sha256('jadoo@147258');
-    if (hash === correct) {
+function tryLogin() {
+  if (lockUntil > Date.now()) { checkLock(); return; }
+  var pw = document.getElementById('pwInput').value;
+  if (!pw) return;
+  sha256(pw).then(function(hash) {
+    sha256('jadoo@147258').then(function(correct) {
+      if (hash === correct) {
         sessionStorage.setItem(SESSION_KEY, 'ok');
         sessionStorage.removeItem('tm_att');
         sessionStorage.removeItem('tm_lock');
-        const s = document.getElementById('loginScreen');
+        var s = document.getElementById('loginScreen');
         s.style.transition = 'opacity 0.4s'; s.style.opacity = '0';
-        setTimeout(() => { s.style.display='none'; unlockApp(); }, 400);
-    } else {
+        setTimeout(function() { s.style.display='none'; unlockApp(); }, 400);
+      } else {
         attempts++;
         sessionStorage.setItem('tm_att', attempts);
         document.getElementById('loginBox').classList.add('shake');
-        setTimeout(() => document.getElementById('loginBox').classList.remove('shake'), 500);
+        setTimeout(function() { document.getElementById('loginBox').classList.remove('shake'); }, 500);
         if (attempts >= MAX_ATT) {
-            lockUntil = Date.now() + LOCK_MS;
-            sessionStorage.setItem('tm_lock', lockUntil);
-            showLoginErr('Too many attempts. Locked for 15 minutes.');
-            document.getElementById('pwInput').disabled = true;
-            document.querySelector('.login-btn').disabled = true;
+          lockUntil = Date.now() + LOCK_MS;
+          sessionStorage.setItem('tm_lock', lockUntil);
+          showLoginErr('Too many attempts. Locked for 15 minutes.');
+          document.getElementById('pwInput').disabled = true;
+          document.querySelector('.login-btn').disabled = true;
         } else {
-            showLoginErr('Incorrect password.');
-            document.getElementById('attemptsNote').textContent = (MAX_ATT - attempts) + ' attempt(s) remaining';
+          showLoginErr('Incorrect password.');
+          document.getElementById('attemptsNote').textContent = (MAX_ATT - attempts) + ' attempt(s) remaining';
         }
         document.getElementById('pwInput').value = '';
-    }
+      }
+    });
+  });
 }
 
 function showLoginErr(msg) {
-    const el = document.getElementById('loginError');
-    el.textContent = msg; el.classList.add('show');
+  var el = document.getElementById('loginError');
+  el.textContent = msg; el.classList.add('show');
 }
 
 function togglePw() {
-    const i = document.getElementById('pwInput');
-    const ic = document.getElementById('eyeIcon');
-    i.type = i.type === 'password' ? 'text' : 'password';
-    ic.className = i.type === 'password' ? 'fas fa-eye' : 'fas fa-eye-slash';
+  var i = document.getElementById('pwInput');
+  var ic = document.getElementById('eyeIcon');
+  i.type = i.type === 'password' ? 'text' : 'password';
+  ic.className = i.type === 'password' ? 'fas fa-eye' : 'fas fa-eye-slash';
 }
 
-async function sha256(str) {
-    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
-    return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+function sha256(str) {
+  return crypto.subtle.digest('SHA-256', new TextEncoder().encode(str))
+    .then(function(buf) {
+      return Array.from(new Uint8Array(buf)).map(function(b) { return b.toString(16).padStart(2,'0'); }).join('');
+    });
 }
 
 function unlockApp() {
-    document.getElementById('adminApp').style.display = 'flex';
-    loadAll();
-}
-
-// ── DATA ────────────────────────────────────────────
-let sd = JSON.parse(localStorage.getItem('storeData')) || {
-    bots: [], settings: { storeName: 'Trade Master No.1', supportEmail: '' }, orders: []
-};
-
-function save() { localStorage.setItem('storeData', JSON.stringify(sd)); }
-
-function loadAll() {
-    loadDashboard();
-    loadOrders();
-    loadBots();
-    loadSettings();
+  document.getElementById('adminApp').classList.add('show');
+  loadDashboard();
+  loadBots();
+  loadOrders();
 }
 
 // ── NAVIGATION ──────────────────────────────────────
 function goPage(name, el) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-    document.getElementById('page-' + name).classList.add('active');
-    el.classList.add('active');
-    if (name === 'orders') loadOrders();
+  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.remove('active'); });
+  document.getElementById('page-' + name).classList.add('active');
+  el.classList.add('active');
+  if (name === 'orders') loadOrders();
+  if (name === 'bots') loadBots();
 }
 
 // ── DASHBOARD ───────────────────────────────────────
 function loadDashboard() {
-    const orders    = sd.orders || [];
-    const pending   = orders.filter(o => o.status === 'pending').length;
-    const confirmed = orders.filter(o => o.status === 'confirmed').length;
-    document.getElementById('sBots').textContent     = sd.bots.length;
-    document.getElementById('sOrders').textContent   = orders.length;
-    document.getElementById('sPending').textContent  = pending;
-    document.getElementById('sConfirmed').textContent = confirmed;
+  fetch(SERVER + '/api/bots')
+    .then(function(r) { return r.json(); })
+    .then(function(bots) { document.getElementById('sBots').textContent = bots.length; });
 
-    const el = document.getElementById('dashOrders');
-    if (!orders.length) { el.innerHTML = '<p style="color:var(--muted);font-size:14px;">No orders yet.</p>'; return; }
-    const recent = [...orders].reverse().slice(0, 5);
-    el.innerHTML = '<table class="orders-table"><thead><tr><th>Date</th><th>Bot</th><th>Amount</th><th>Email</th><th>Status</th></tr></thead><tbody>' +
-        recent.map(o => '<tr>' +
-            '<td style="font-size:11px;color:var(--muted);font-family:JetBrains Mono,monospace">' + new Date(o.date).toLocaleDateString() + '</td>' +
-            '<td style="font-weight:600">' + o.botName + '</td>' +
-            '<td style="color:var(--gold);font-family:Bebas Neue,sans-serif;font-size:20px">$' + o.amount + '</td>' +
-            '<td style="color:#4FC3F7;font-family:JetBrains Mono,monospace;font-size:12px">' + o.email + '</td>' +
-            '<td><span class="status-badge ' + (o.status === 'confirmed' ? 'status-confirmed' : 'status-pending') + '">' + o.status.toUpperCase() + '</span></td>' +
-        '</tr>').join('') +
-    '</tbody></table>';
+  fetch(SERVER + '/api/orders')
+    .then(function(r) { return r.json(); })
+    .then(function(orders) {
+      document.getElementById('sOrders').textContent   = orders.length;
+      document.getElementById('sPending').textContent  = orders.filter(function(o) { return o.status === 'pending'; }).length;
+      document.getElementById('sConfirmed').textContent = orders.filter(function(o) { return o.status === 'confirmed'; }).length;
+
+      var el = document.getElementById('dashOrders');
+      if (!orders.length) { el.innerHTML = '<p style="color:var(--muted);font-size:14px">No orders yet.</p>'; return; }
+      var recent = orders.slice(0, 5);
+      el.innerHTML = '<table class="orders-table"><thead><tr><th>Date</th><th>Bot</th><th>Amount</th><th>Email</th><th>Status</th></tr></thead><tbody>' +
+        recent.map(function(o) { return '<tr>' +
+          '<td style="font-size:11px;color:var(--muted)">' + new Date(o.date).toLocaleDateString() + '</td>' +
+          '<td style="font-weight:600">' + o.botName + '</td>' +
+          '<td style="color:var(--gold);font-family:Bebas Neue,sans-serif;font-size:20px">$' + o.amount + '</td>' +
+          '<td style="color:#4FC3F7;font-size:12px">' + o.email + '</td>' +
+          '<td><span class="status-badge ' + (o.status === 'confirmed' ? 'status-confirmed' : 'status-pending') + '">' + o.status.toUpperCase() + '</span></td>' +
+        '</tr>'; }).join('') + '</tbody></table>';
+    });
 }
 
 // ── ORDERS ──────────────────────────────────────────
 function loadOrders() {
-    const orders = [...(sd.orders || [])].reverse();
-    const pending = orders.filter(o => o.status === 'pending').length;
-    const badge = document.getElementById('pendingBadge');
-    if (pending > 0) { badge.textContent = pending; badge.style.display = 'inline'; }
-    else badge.style.display = 'none';
+  fetch(SERVER + '/api/orders')
+    .then(function(r) { return r.json(); })
+    .then(function(orders) {
+      var pending = orders.filter(function(o) { return o.status === 'pending'; }).length;
+      var badge = document.getElementById('pendingBadge');
+      if (pending > 0) { badge.textContent = pending; badge.style.display = 'inline'; }
+      else badge.style.display = 'none';
 
-    const body = document.getElementById('ordersBody');
-    if (!orders.length) {
-        body.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:32px;">No orders yet.</td></tr>';
+      var body = document.getElementById('ordersBody');
+      if (!orders.length) {
+        body.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:32px">No orders yet.</td></tr>';
         return;
-    }
-    body.innerHTML = orders.map(o => '<tr>' +
-        '<td style="font-size:11px;color:var(--muted);font-family:JetBrains Mono,monospace">' + new Date(o.date).toLocaleDateString() + '</td>' +
+      }
+      body.innerHTML = orders.map(function(o) { return '<tr>' +
+        '<td style="font-size:11px;color:var(--muted)">' + new Date(o.date).toLocaleDateString() + '</td>' +
         '<td style="font-weight:600">' + o.botName + '</td>' +
         '<td style="color:var(--gold);font-family:Bebas Neue,sans-serif;font-size:20px">$' + o.amount + '</td>' +
         '<td style="color:#4FC3F7;font-size:12px">' + o.method + '</td>' +
-        '<td style="color:#4FC3F7;font-family:JetBrains Mono,monospace;font-size:12px">' + o.email + '</td>' +
+        '<td style="color:#4FC3F7;font-size:12px">' + o.email + '</td>' +
         '<td><span class="status-badge ' + (o.status === 'confirmed' ? 'status-confirmed' : 'status-pending') + '">' + o.status.toUpperCase() + '</span></td>' +
-    '</tr>').join('');
-}
-
-// ── BOTS ────────────────────────────────────────────
-var pendingIndicators = []; // temp storage for indicator files
-
-function previewImg(input) {
-    const file = input.files[0];
-    if (!file) return;
-    document.getElementById('imgLabel').textContent = '✓ ' + file.name;
-    const reader = new FileReader();
-    reader.onload = e => {
-        const prev = document.getElementById('imgPreview');
-        prev.src = e.target.result;
-        prev.style.display = 'block';
-    };
-    reader.readAsDataURL(file);
-}
-
-function updateLabel(input, labelId) {
-    const file = input.files[0];
-    if (file) document.getElementById(labelId).textContent = '✓ ' + file.name + ' (' + (file.size/1024).toFixed(1) + ' KB)';
-}
-
-function updateIndicators(input) {
-    const files = Array.from(input.files);
-    const list  = document.getElementById('indsList');
-    pendingIndicators = files;
-    list.innerHTML = files.map((f, i) =>
-        '<div class="indicator-item">' +
-            '<div><div class="indicator-name">' + f.name + '</div>' +
-            '<div class="indicator-size">' + (f.size/1024).toFixed(1) + ' KB</div></div>' +
-            '<span class="file-badge badge-ind">INDICATOR</span>' +
-        '</div>'
-    ).join('');
-}
-
-function addBot() {
-    const name     = document.getElementById('botName').value.trim();
-    const price    = parseFloat(document.getElementById('botPrice').value);
-    const desc     = document.getElementById('botDesc').value.trim();
-    const featsRaw = document.getElementById('botFeatures').value.trim();
-    const feats    = featsRaw ? featsRaw.split(',').map(f => f.trim()).filter(Boolean) : [];
-    const imgFile  = document.getElementById('botImg').files[0];
-    const ex5File  = document.getElementById('botEx5').files[0];
-
-    if (!name || !price || !desc) { showAlert('botErrAlert','botErrTxt','Please fill all required fields.'); return; }
-    if (!ex5File) { showAlert('botErrAlert','botErrTxt','Please upload the bot .ex5 file.'); return; }
-
-    // Read all files
-    const readers = [];
-    const result  = { id: Date.now(), name, price, description: desc, features: feats, dateAdded: new Date().toISOString(), image: null, botFile: null, indicators: [] };
-
-    let pending = 1 + (imgFile ? 1 : 0) + pendingIndicators.length;
-
-    function checkDone() {
-        pending--;
-        if (pending === 0) {
-            sd.bots.push(result);
-            save();
-            showAlert('botAlert','botAlertTxt','Bot added successfully!');
-            clearBotForm();
-            loadBots();
-            loadDashboard();
-        }
-    }
-
-    // Read ex5
-    const r1 = new FileReader();
-    r1.onload = e => { result.botFile = { name: ex5File.name, size: ex5File.size, data: e.target.result }; checkDone(); };
-    r1.readAsDataURL(ex5File);
-
-    // Read image
-    if (imgFile) {
-        const r2 = new FileReader();
-        r2.onload = e => { result.image = e.target.result; checkDone(); };
-        r2.readAsDataURL(imgFile);
-    }
-
-    // Read indicators
-    pendingIndicators.forEach(f => {
-        const r = new FileReader();
-        r.onload = e => { result.indicators.push({ name: f.name, size: f.size, data: e.target.result }); checkDone(); };
-        r.readAsDataURL(f);
+      '</tr>'; }).join('');
     });
 }
 
+// ── BOTS ────────────────────────────────────────────
+var pendingIndicators = [];
+
+function previewImg(input) {
+  var file = input.files[0];
+  if (!file) return;
+  document.getElementById('imgLabel').textContent = '✓ ' + file.name;
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var prev = document.getElementById('imgPreview');
+    prev.src = e.target.result; prev.style.display = 'block';
+  };
+  reader.readAsDataURL(file);
+}
+
+function updateLabel(input, labelId) {
+  var file = input.files[0];
+  if (file) document.getElementById(labelId).textContent = '✓ ' + file.name + ' (' + (file.size/1024).toFixed(1) + ' KB)';
+}
+
+function updateIndicators(input) {
+  var files = Array.from(input.files);
+  pendingIndicators = files;
+  document.getElementById('indsList').innerHTML = files.map(function(f) {
+    return '<div style="background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between">' +
+      '<span style="font-family:JetBrains Mono,monospace;font-size:13px;color:var(--gold)">' + f.name + '</span>' +
+      '<span style="font-size:11px;color:var(--muted)">' + (f.size/1024).toFixed(1) + ' KB</span>' +
+    '</div>';
+  }).join('');
+}
+
+function addBot() {
+  var name     = document.getElementById('botName').value.trim();
+  var price    = parseFloat(document.getElementById('botPrice').value);
+  var desc     = document.getElementById('botDesc').value.trim();
+  var featsRaw = document.getElementById('botFeatures').value.trim();
+  var feats    = featsRaw ? featsRaw.split(',').map(function(f) { return f.trim(); }).filter(Boolean) : [];
+  var imgFile  = document.getElementById('botImg').files[0];
+  var ex5File  = document.getElementById('botEx5').files[0];
+
+  if (!name || !price || !desc) { showAlert('botErrAlert','botErrTxt','Please fill all required fields.'); return; }
+  if (!ex5File) { showAlert('botErrAlert','botErrTxt','Please upload the bot .ex5 file.'); return; }
+
+  var btn = document.getElementById('addBotBtn');
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Uploading...';
+  btn.disabled = true;
+
+  var botData = { name: name, price: price, description: desc, features: feats, image: null, botFile: null, indicators: [] };
+  var total = 1 + (imgFile ? 1 : 0) + pendingIndicators.length;
+  var done  = 0;
+
+  function checkDone() {
+    done++;
+    if (done < total) return;
+    // Save to server
+    fetch(SERVER + '/api/bots', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(botData)
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(res) {
+      if (res.success) {
+        showAlert('botAlert','botAlertTxt','Bot added successfully!');
+        clearBotForm();
+        loadBots();
+        loadDashboard();
+      } else {
+        showAlert('botErrAlert','botErrTxt','Error: ' + (res.error || 'Unknown error'));
+      }
+      btn.innerHTML = '<i class="fas fa-plus"></i> Add Bot';
+      btn.disabled = false;
+    })
+    .catch(function(e) {
+      showAlert('botErrAlert','botErrTxt','Upload failed: ' + e.message);
+      btn.innerHTML = '<i class="fas fa-plus"></i> Add Bot';
+      btn.disabled = false;
+    });
+  }
+
+  // Read ex5
+  var r1 = new FileReader();
+  r1.onload = function(e) { botData.botFile = { name: ex5File.name, size: ex5File.size, data: e.target.result }; checkDone(); };
+  r1.readAsDataURL(ex5File);
+
+  // Read image
+  if (imgFile) {
+    var r2 = new FileReader();
+    r2.onload = function(e) { botData.image = e.target.result; checkDone(); };
+    r2.readAsDataURL(imgFile);
+  }
+
+  // Read indicators
+  pendingIndicators.forEach(function(f) {
+    var r = new FileReader();
+    r.onload = function(e) { botData.indicators.push({ name: f.name, size: f.size, data: e.target.result }); checkDone(); };
+    r.readAsDataURL(f);
+  });
+}
+
 function clearBotForm() {
-    ['botName','botPrice','botDesc','botFeatures'].forEach(id => document.getElementById(id).value = '');
-    document.getElementById('botImg').value  = '';
-    document.getElementById('botEx5').value  = '';
-    document.getElementById('botInds').value = '';
-    document.getElementById('imgLabel').textContent  = '';
-    document.getElementById('ex5Label').textContent  = '';
-    document.getElementById('indsList').innerHTML    = '';
-    document.getElementById('imgPreview').style.display = 'none';
-    pendingIndicators = [];
+  ['botName','botPrice','botDesc','botFeatures'].forEach(function(id) { document.getElementById(id).value = ''; });
+  document.getElementById('botImg').value  = '';
+  document.getElementById('botEx5').value  = '';
+  document.getElementById('botInds').value = '';
+  document.getElementById('imgLabel').textContent  = '';
+  document.getElementById('ex5Label').textContent  = '';
+  document.getElementById('indsList').innerHTML    = '';
+  document.getElementById('imgPreview').style.display = 'none';
+  pendingIndicators = [];
 }
 
 function loadBots() {
-    const el = document.getElementById('botsList');
-    if (!sd.bots.length) { el.innerHTML = '<p style="color:var(--muted);font-size:14px;">No bots yet.</p>'; return; }
-    el.innerHTML = sd.bots.map(b => '<div class="bot-row">' +
-        '<div class="bot-row-img">' + (b.image ? '<img src="' + b.image + '" alt="' + b.name + '">' : '⚡') + '</div>' +
-        '<div class="bot-row-info">' +
+  var el = document.getElementById('botsList');
+  el.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i> Loading bots...</div>';
+  fetch(SERVER + '/api/bots')
+    .then(function(r) { return r.json(); })
+    .then(function(bots) {
+      if (!bots.length) { el.innerHTML = '<p style="color:var(--muted);font-size:14px">No bots yet. Add your first bot above.</p>'; return; }
+      el.innerHTML = bots.map(function(b) {
+        return '<div class="bot-row">' +
+          '<div class="bot-row-img">' + (b.image ? '<img src="' + b.image + '" alt="' + b.name + '">' : '⚡') + '</div>' +
+          '<div class="bot-row-info">' +
             '<div class="bot-row-name">' + b.name + '</div>' +
             '<div class="bot-row-desc">' + b.description.substring(0,80) + '…</div>' +
             '<div class="bot-row-files">' +
-                (b.botFile ? '<span class="file-badge badge-ex5">⚡ ' + b.botFile.name + '</span>' : '') +
-                (b.image   ? '<span class="file-badge badge-img">📸 Image</span>' : '') +
-                (b.indicators && b.indicators.length ? '<span class="file-badge badge-ind">📊 ' + b.indicators.length + ' Indicator(s)</span>' : '') +
+              (b.botFile ? '<span class="file-badge badge-ex5">⚡ ' + b.botFile.name + '</span>' : '') +
+              (b.image   ? '<span class="file-badge badge-img">📸 Image</span>' : '') +
+              (b.indicators && b.indicators.length ? '<span class="file-badge badge-ind">📊 ' + b.indicators.length + ' Indicator(s)</span>' : '') +
             '</div>' +
-        '</div>' +
-        '<div class="bot-row-price">$' + b.price + '</div>' +
-        '<div class="bot-row-actions">' +
-            '<button class="btn btn-ghost btn-sm" onclick="dlBot(' + b.id + ')"><i class="fas fa-download"></i></button>' +
-            '<button class="btn btn-danger btn-sm" onclick="delBot(' + b.id + ')"><i class="fas fa-trash"></i></button>' +
-        '</div>' +
-    '</div>').join('');
+          '</div>' +
+          '<div class="bot-row-price">$' + b.price + '</div>' +
+          '<div class="bot-row-actions">' +
+            '<button class="btn btn-danger btn-sm" onclick="delBot(\'' + b._id + '\')"><i class="fas fa-trash"></i></button>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+    })
+    .catch(function() { el.innerHTML = '<p style="color:#E74C3C;font-size:14px">Error loading bots. Check server connection.</p>'; });
 }
 
 function delBot(id) {
-    if (!confirm('Delete this bot?')) return;
-    sd.bots = sd.bots.filter(b => b.id !== id);
-    save(); loadBots(); loadDashboard();
-    showAlert('botAlert','botAlertTxt','Bot deleted.');
+  if (!confirm('Delete this bot?')) return;
+  fetch(SERVER + '/api/bots/' + id, { method: 'DELETE' })
+    .then(function() { loadBots(); loadDashboard(); showAlert('botAlert','botAlertTxt','Bot deleted.'); });
 }
 
-function dlBot(id) {
-    const b = sd.bots.find(x => x.id === id);
-    if (!b || !b.botFile) return;
-    const a = document.createElement('a');
-    a.href = b.botFile.data; a.download = b.botFile.name; a.click();
-}
-
-// ── SETTINGS ────────────────────────────────────────
-function loadSettings() {
-    document.getElementById('storeName').value    = sd.settings.storeName || '';
-    document.getElementById('supportEmail').value = sd.settings.supportEmail || '';
-}
-
-function saveSettings() {
-    sd.settings.storeName    = document.getElementById('storeName').value;
-    sd.settings.supportEmail = document.getElementById('supportEmail').value;
-    save(); alert('Settings saved!');
-}
-
-function exportData() {
-    const b = new Blob([JSON.stringify(sd,null,2)],{type:'application/json'});
-    const u = URL.createObjectURL(b);
-    const a = document.createElement('a'); a.href=u; a.download='trademaster-backup.json'; a.click();
-}
-
-function clearData() {
-    if (!confirm('Delete ALL data permanently?')) return;
-    localStorage.removeItem('storeData'); location.reload();
-}
-
-// ── HELPERS ─────────────────────────────────────────
 function showAlert(elId, txtId, msg) {
-    const el = document.getElementById(elId);
-    document.getElementById(txtId).textContent = msg;
-    el.classList.add('show');
-    setTimeout(() => el.classList.remove('show'), 3500);
+  var el = document.getElementById(elId);
+  document.getElementById(txtId).textContent = msg;
+  el.classList.add('show');
+  setTimeout(function() { el.classList.remove('show'); }, 3500);
 }
 </script>
 
