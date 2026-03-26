@@ -63,6 +63,8 @@ nav{position:sticky;top:0;z-index:100;background:rgba(11,14,17,0.95);backdrop-fi
 .price-sub{font-size:11px;color:var(–muted);margin-bottom:3px}
 .btn-buy{width:100%;background:var(–gold);color:#0B0E11;font-family:‘DM Sans’,sans-serif;font-weight:700;font-size:14px;padding:13px;border:none;border-radius:8px;cursor:pointer;transition:all 0.2s}
 .btn-buy:hover{background:#FFD02A;transform:scale(1.02)}
+.btn-free{background:linear-gradient(135deg,#2ECC71,#27AE60) !important;color:#0B0E11 !important;}
+.btn-free:hover{background:linear-gradient(135deg,#27AE60,#1e8449) !important;transform:scale(1.02)}
 
 .feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
 .feat-card{background:var(–panel);border:1px solid var(–border);border-radius:10px;padding:24px}
@@ -381,7 +383,7 @@ function renderBots(bots) {
         '<ul class="feat-list">' + fl + '</ul>' +
         '<div class="price-row"><div><div class="price">$' + b.price + '</div><div class="price-sub">Lifetime license</div></div>' +
         '<div style="font-size:10px;color:var(--muted);font-family:JetBrains Mono,monospace;text-align:right">PROTECTED<br>.ex5</div></div>' +
-        '<button class="btn-buy" onclick="openModal(\'' + b._id + '\')">Buy Now — $' + b.price + '</button>' +
+        '<button class="btn-buy ' + (b.price == 0 ? 'btn-free' : '') + '" onclick="' + (b.price == 0 ? 'freeDownload(\'' + b._id + '\')' : 'openModal(\'' + b._id + '\')') + '">' + (b.price == 0 ? '⬇️ Free Download' : 'Buy Now — $' + b.price) + '</button>' +
       '</div>' +
     '</div>';
   }
@@ -553,6 +555,45 @@ function tgNotify(msg) {
 document.getElementById('overlay').addEventListener('click', function(e) {
   if (e.target === this) closeModal();
 });
+
+function freeDownload(botId) {
+  var bot = null;
+  for (var i = 0; i < allBots.length; i++) {
+    if (allBots[i]._id === botId) { bot = allBots[i]; break; }
+  }
+  if (!bot) return;
+
+  fetch(SERVER + '/api/bots/' + botId + '/download')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      if (data.file) {
+        var a = document.createElement('a');
+        a.href = data.file.data;
+        a.download = data.file.name;
+        a.click();
+        // Download indicators too
+        if (bot.indicators && bot.indicators.length) {
+          bot.indicators.forEach(function(ind, i) {
+            setTimeout(function() {
+              fetch(SERVER + '/api/bots/' + botId + '/indicator/' + i)
+                .then(function(r) { return r.json(); })
+                .then(function(d) {
+                  if (d.file) {
+                    var a2 = document.createElement('a');
+                    a2.href = d.file.data;
+                    a2.download = d.file.name;
+                    a2.click();
+                  }
+                });
+            }, i * 500);
+          });
+        }
+      } else {
+        alert('File not found. Please contact support.');
+      }
+    })
+    .catch(function() { alert('Download failed. Please try again.'); });
+}
 </script>
 
 </body>
