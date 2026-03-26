@@ -227,21 +227,21 @@ input:-webkit-autofill:focus {
       </div>
 
       <div class="field form-full">
-        <label>⚡ Bot File (.ex5) — no source code</label>
+        <label>⚡ Main File (.ex5, .mq5, .txt, .pdf or any)</label>
         <div class="upload-zone" onclick="document.getElementById('botEx5').click()">
           <i class="fas fa-robot"></i>
           <p><strong>Click to upload .ex5 file</strong></p>
-          <input type="file" id="botEx5" accept=".ex5,.mq5" style="display:none" onchange="updateLabel(this,'ex5Label')">
+          <input type="file" id="botEx5" accept="*/*" style="display:none" onchange="updateLabel(this,'ex5Label')">
         </div>
         <span class="file-label" id="ex5Label"></span>
       </div>
 
       <div class="field form-full">
-        <label>📊 Indicators (.ex5) — optional, multiple allowed</label>
+        <label>📊 Extra Files — optional, multiple allowed (.ex5, .txt, .pdf, any)</label>
         <div class="upload-zone" onclick="document.getElementById('botInds').click()">
           <i class="fas fa-chart-bar"></i>
           <p><strong>Click to upload indicators</strong> — multiple files allowed</p>
-          <input type="file" id="botInds" accept=".ex5,.mq5" multiple style="display:none" onchange="updateIndicators(this)">
+          <input type="file" id="botInds" accept="*/*" multiple style="display:none" onchange="updateIndicators(this)">
         </div>
         <div id="indsList" style="margin-top:10px"></div>
       </div>
